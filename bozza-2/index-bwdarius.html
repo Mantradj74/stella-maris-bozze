@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stella Maris · Draft 2</title>
+<meta name="description" content="Fifteen adults-only luxury apartments on the seafront of Puerto Calero, Lanzarote: sea or pool views, two infinity pools and private hot tubs on selected terraces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  @font-face { font-family: "Bw Darius"; src: url(_font-test/BwDarius-Light.woff2) format("woff2"); font-weight: 300; font-display: swap; }
+  @font-face { font-family: "Bw Darius"; src: url(_font-test/BwDarius-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+</style>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="preload" as="image" href="img/hero-2.webp">
+<style>
+  /* Bozza 2 "Una giornata a Stella Maris". Tema chiaro con un solo passaggio voluto al blu notte (il racconto del giorno). */
+  :root {
+    --paper: #f5f8f9;      /* bianco calce freddo */
+    --mist: #e9f1f5;       /* azzurro chiarissimo per fondi alternati */
+    --ink: #142033;        /* blu notte, testi */
+    --muted: #556173;
+    --line: rgba(20, 32, 51, .14);
+    --sky: #7ab8d6;        /* azzurrino Replit, solo parole evidenziate e filetti */
+    --night: #0c1626;
+    --serif: "Bw Darius", Georgia, serif;
+    --sans: "General Sans", system-ui, sans-serif;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+    --gutter: clamp(20px, 5vw, 80px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--paper); color: var(--ink); font: 400 17px/1.65 var(--sans); overflow-x: hidden; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select { font: inherit; color: inherit; }
+  .serif { font-family: var(--serif); font-optical-sizing: auto; }
+  h1, h2, h3 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 400; letter-spacing: -.01em; }
+  em.hl { font-style: normal; color: var(--sky); }
+  .label { display: block; font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* Pulsanti: angoli netti ovunque */
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; border: 1px solid currentColor; transition: background .4s var(--ease), color .4s var(--ease), transform .2s; cursor: pointer; background: none; }
+  .btn:active { transform: translateY(1px); }
+  .btn-solid { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-solid:hover { background: #22324d; }
+  .btn-light { color: #fff; }
+  .btn-light:hover { background: #fff; color: var(--ink); }
+  .link { font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; display: inline-flex; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid currentColor; }
+
+  /* Header */
+  .hdr { position: fixed; inset: 0 0 auto 0; z-index: 50; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); color: #fff; transition: background .5s var(--ease), color .5s var(--ease), box-shadow .5s; }
+  .hdr .logo { position: relative; width: 150px; height: 62px; }
+  .hdr .logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .5s; }
+  .hdr .logo .blue { opacity: 0; }
+  .hdr nav { display: flex; align-items: center; gap: 40px; font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+  .hdr nav a:not(.btn) { opacity: .9; }
+  .hdr nav a:not(.btn):hover { opacity: 1; }
+  .hdr .btn { padding: 12px 20px; }
+  .hdr.solid { background: rgba(245, 248, 249, .94); color: var(--ink); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .hdr.solid .logo .white { opacity: 0; }
+  .hdr.solid .logo .blue { opacity: 1; }
+  .hdr.solid .btn:hover { background: var(--ink); color: #fff; }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100dvh; display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; }
+  .hero .bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; transform: scale(1.08); }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,22,38,.35) 0%, rgba(12,22,38,0) 30%, rgba(12,22,38,.15) 55%, rgba(12,22,38,.62) 100%); }
+  .hero .in { position: relative; z-index: 1; width: 100%; padding: 0 var(--gutter) clamp(48px, 9vh, 96px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: end; }
+  .hero .label { color: rgba(255,255,255,.85); }
+  .hero h1 { font-weight: 300; font-size: clamp(40px, 5vw, 84px); line-height: 1.04; max-width: 21ch; }
+  .hero p { margin-top: 24px; font-size: clamp(16px, 1.2vw, 19px); font-weight: 300; max-width: 40ch; }
+  .hero .ctas { display: flex; flex-direction: column; align-items: flex-end; gap: 22px; }
+
+  /* Racconto: 4 scene fissate sullo schermo mentre si scorre */
+  .day { position: relative; height: 100dvh; overflow: hidden; color: #fff; background: var(--night); }
+  .sc { position: absolute; inset: 0; opacity: 0; }
+  .sc:first-child { opacity: 1; }
+  .sc .media { position: absolute; inset: 0; overflow: hidden; }
+  .sc .media img, .sc .media video { width: 100%; height: 100%; object-fit: cover; }
+  .sc .tint { position: absolute; inset: 0; }
+  .sc .tint::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 180px; background: linear-gradient(180deg, rgba(12,22,38,.45), rgba(12,22,38,0)); }
+  .sc1 .tint { background: linear-gradient(180deg, rgba(255,236,214,.10) 0%, rgba(12,22,38,.05) 40%, rgba(12,22,38,.55) 100%); }
+  .sc2 .tint { background: linear-gradient(180deg, rgba(12,22,38,0) 45%, rgba(12,22,38,.5) 100%); }
+  .sc3 .tint { background: linear-gradient(180deg, rgba(60,24,10,.05) 0%, rgba(12,22,38,.6) 100%); }
+  .sc4 .tint { background: linear-gradient(180deg, rgba(12,22,38,.25) 0%, rgba(12,22,38,.7) 100%); }
+  .sc4 canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .cap { position: absolute; left: var(--gutter); bottom: clamp(120px, 18vh, 190px); max-width: min(940px, 66vw); }
+  .cap h2 { font-weight: 300; font-size: clamp(38px, 4.8vw, 78px); line-height: 1.05; }
+  .cap p { margin-top: 20px; font-size: clamp(16px, 1.2vw, 19px); font-weight: 300; max-width: 42ch; opacity: .92; }
+  .cap .when { display: none; font-size: 13px; letter-spacing: .3em; margin-bottom: 14px; }
+  .inset { position: absolute; right: var(--gutter); top: 18vh; width: clamp(200px, 22vw, 340px); aspect-ratio: 4 / 5; overflow: hidden; box-shadow: 0 30px 80px rgba(12,22,38,.35); }
+  .inset video { width: 100%; height: 100%; object-fit: cover; }
+  .clock { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(48px, 7vh, 72px); display: flex; flex-direction: column; align-items: flex-end; gap: 16px; pointer-events: none; }
+  .clock .time { font: 300 clamp(44px, 4.4vw, 72px)/1 var(--serif); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+  .dayline { position: relative; width: clamp(240px, 26vw, 380px); display: grid; grid-template-columns: repeat(4, 1fr); font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+  .dayline span { padding-top: 14px; opacity: .55; transition: opacity .4s; }
+  .dayline span.on { opacity: 1; }
+  .dayline::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(255,255,255,.3); }
+  .dayline i { position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: #fff; transform-origin: left; transform: scaleX(0); }
+
+  /* Posizionamento: il fondo passa dal blu notte al bianco */
+  .why { background: var(--night); color: #fff; padding: clamp(110px, 16vh, 180px) 0 clamp(90px, 13vh, 150px); }
+  .why .label { color: inherit; opacity: .7; }
+  .why h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 18ch; }
+  .why .lead { margin-top: 30px; font-family: var(--serif); font-weight: 300; font-size: clamp(21px, 1.7vw, 27px); line-height: 1.5; max-width: 52ch; }
+  .facts { margin-top: clamp(64px, 9vh, 100px); display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid currentColor; border-color: rgba(127,140,160,.35); }
+  .facts div { padding: 30px 28px 0 0; }
+  .facts i { font-size: 30px; color: var(--sky); }
+  .facts h3 { margin: 18px 0 8px; font-size: 22px; }
+  .facts p { font-size: 15px; line-height: 1.6; opacity: .8; max-width: 26ch; }
+
+  /* Appartamenti: foto grande + scheda vetro (effetto Lovable) */
+  .apts { padding: clamp(100px, 14vh, 160px) 0 0; }
+  .apts .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+  .apts h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; }
+  .apts .head p { margin-top: 18px; color: var(--muted); max-width: 46ch; }
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); }
+  .tabs button { background: none; border: 0; padding: 14px 0; margin-right: 34px; font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); cursor: pointer; position: relative; }
+  .tabs button::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); }
+  .tabs button[aria-selected="true"] { color: var(--ink); }
+  .tabs button[aria-selected="true"]::after { transform: scaleX(1); }
+  .apt-stage { position: relative; margin-top: 44px; height: min(88vh, 860px); min-height: 560px; overflow: hidden; color: #fff; }
+  .apt-img { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s var(--ease); }
+  .apt-img.on { opacity: 1; }
+  .apt-img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); transition: transform 6s var(--ease); }
+  .apt-img.on img { transform: scale(1); }
+  .apt-stage::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12,22,38,.55) 0%, rgba(12,22,38,.15) 55%, rgba(12,22,38,.35) 100%); pointer-events: none; }
+  .apt-title { position: absolute; z-index: 2; left: var(--gutter); bottom: clamp(48px, 8vh, 80px); max-width: 520px; }
+  .apt-title h3 { font-weight: 300; font-size: clamp(40px, 4.4vw, 72px); line-height: 1.04; }
+  .apt-title p { margin-top: 14px; font-weight: 300; max-width: 34ch; }
+  .glass { position: absolute; z-index: 2; right: var(--gutter); top: 50%; transform: translateY(-50%); width: min(400px, 40vw); padding: 32px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 40px 90px rgba(12,22,38,.35); }
+  .glass dl { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+  .glass dt { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; opacity: .75; }
+  .glass dd { margin-top: 4px; font-family: var(--serif); font-size: 22px; }
+  .glass .price { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.22); display: flex; align-items: baseline; gap: 8px; }
+  .glass .price b { font: 300 40px/1 var(--serif); }
+  .glass .note { font-size: 12px; opacity: .7; margin-top: 6px; }
+  .glass .btn { margin-top: 24px; width: 100%; justify-content: center; }
+  .glass .fade { transition: opacity .45s var(--ease); }
+  .glass.swap .fade { opacity: 0; }
+
+  /* Energia */
+  .energy { padding: clamp(110px, 15vh, 170px) 0; text-align: center; }
+  .energy h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; }
+  .energy .lead { margin: 24px auto 0; max-width: 50ch; color: var(--muted); }
+  .energy ul { list-style: none; margin: clamp(56px, 8vh, 80px) auto 0; max-width: 1080px; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .energy li { padding: 8px 32px; border-left: 1px solid var(--line); }
+  .energy li:first-child { border-left: 0; }
+  .energy li i { font-size: 34px; color: var(--sky); }
+  .energy li h3 { margin: 16px 0 6px; font-size: 22px; }
+  .energy li p { font-size: 15px; color: var(--muted); }
+  .tbc { display: inline-block; margin-top: 10px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); border: 1px dashed var(--line); padding: 4px 8px; }
+
+  /* Lanzarote: strisce che si allargano */
+  .island { background: var(--mist); padding: clamp(100px, 14vh, 160px) 0; }
+  .island h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 18ch; }
+  .island .lead { margin-top: 20px; max-width: 54ch; color: var(--muted); }
+  .strips { margin-top: 56px; display: flex; gap: 10px; height: min(70vh, 640px); min-height: 460px; }
+  .strip { position: relative; flex: 1; overflow: hidden; cursor: pointer; transition: flex 1s var(--ease); color: #fff; border: 0; padding: 0; text-align: left; background: var(--ink); }
+  .strip.on { flex: 4.2; }
+  .strip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease), opacity .6s; opacity: .85; }
+  .strip.on img { opacity: 1; transform: scale(1.03); }
+  .strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,22,38,0) 45%, rgba(12,22,38,.65) 100%); }
+  .strip .t { position: absolute; z-index: 1; left: 24px; right: 24px; bottom: 24px; }
+  .strip h3 { font-size: 26px; font-weight: 400; white-space: nowrap; }
+  .strip p { margin-top: 6px; font-size: 15px; font-weight: 300; max-width: 30ch; opacity: 0; transform: translateY(8px); transition: opacity .6s .15s var(--ease), transform .6s .15s var(--ease); }
+  .strip.on p { opacity: 1; transform: none; }
+  .strip:not(.on) h3 { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 22px; }
+
+  /* Puerto Calero */
+  .place { position: relative; }
+  .place .vid { position: relative; height: min(78vh, 760px); min-height: 460px; overflow: hidden; }
+  .place .vid video { width: 100%; height: 100%; object-fit: cover; }
+  .place .card { position: relative; z-index: 2; margin: -150px var(--gutter) 0 auto; width: min(760px, calc(100% - 2 * var(--gutter))); background: var(--paper); padding: clamp(36px, 4vw, 60px); }
+  .place h2 { font-size: clamp(34px, 3.4vw, 54px); line-height: 1.08; }
+  .place .lead { margin-top: 18px; color: var(--muted); max-width: 52ch; }
+  .dist { margin-top: 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .dist b { display: block; font: 300 34px/1 var(--serif); }
+  .dist span { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); line-height: 1.4; }
+  .place .link { margin-top: 34px; }
+
+  /* Prenota */
+  .book { padding: clamp(110px, 15vh, 170px) 0; }
+  .book .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 6vw, 110px); align-items: center; }
+  .book h2 { font-size: clamp(38px, 4vw, 64px); line-height: 1.06; }
+  .book .lead { margin-top: 20px; color: var(--muted); max-width: 40ch; }
+  .book form { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .field { display: grid; gap: 8px; }
+  .field label { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .field input, .field select { width: 100%; padding: 14px 0; background: transparent; border: 0; border-bottom: 1px solid rgba(20,32,51,.35); border-radius: 0; font-size: 17px; outline: none; transition: border-color .3s; -webkit-appearance: none; appearance: none; }
+  .field select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 12px) 50%, calc(100% - 7px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+  .field input:focus, .field select:focus { border-color: var(--ink); }
+  .field small { font-size: 12px; color: var(--muted); }
+  .book form .btn { grid-column: 1 / -1; justify-content: center; margin-top: 10px; }
+  .book .pic { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+  .book .pic img { width: 100%; height: 115%; object-fit: cover; }
+
+  /* Footer */
+  .foot { background: var(--night); color: rgba(255,255,255,.82); padding: 90px 0 36px; font-size: 15px; }
+  .foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+  .foot img { width: 170px; }
+  .foot h4 { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: #fff; margin-bottom: 18px; }
+  .foot li { list-style: none; margin-bottom: 10px; }
+  .foot a:hover { color: #fff; }
+  .foot .legal { margin-top: 70px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; opacity: .7; }
+
+  .totop { position: fixed; right: 22px; bottom: 22px; z-index: 40; width: 48px; height: 48px; display: grid; place-items: center; background: var(--paper); color: var(--ink); border: 1px solid var(--line); font-size: 20px; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .4s, transform .4s var(--ease); }
+  .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+
+  /* Comparsa al primo caricamento e allo scorrimento */
+  .rv { opacity: 0; transform: translateY(26px); }
+
+  @media (max-width: 1000px) {
+    .hdr nav a:not(.btn) { display: none; }
+    .hero .in { grid-template-columns: 1fr; }
+    .hero .ctas { flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .facts { grid-template-columns: 1fr 1fr; gap: 0 24px; }
+    .glass { position: relative; top: auto; right: auto; transform: none; width: auto; margin: 0; }
+    .apt-stage { height: auto; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 52vh var(--gutter) var(--gutter); }
+    .apt-title { position: relative; left: 0; bottom: 0; margin-bottom: 26px; }
+    .book .grid { grid-template-columns: 1fr; }
+    .book .pic { display: none; }
+    .foot .cols { grid-template-columns: 1fr 1fr; }
+    .dist { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    body { font-size: 16px; }
+    .hdr { height: 64px; }
+    .hero::after { background: linear-gradient(180deg, rgba(12,22,38,.4) 0%, rgba(12,22,38,.12) 28%, rgba(12,22,38,.5) 55%, rgba(12,22,38,.82) 100%); }
+    .hdr .logo { width: 120px; height: 50px; }
+    .cap { right: var(--gutter); max-width: none; bottom: 170px; }
+    .inset { display: none; }
+    .clock { left: var(--gutter); right: var(--gutter); align-items: stretch; }
+    .clock .time { font-size: 40px; }
+    .dayline { width: 100%; }
+    .facts { grid-template-columns: 1fr; }
+    .energy ul { grid-template-columns: 1fr; gap: 36px; }
+    .energy li { border-left: 0; padding: 0; }
+    .strips { flex-direction: column; height: auto; min-height: 0; }
+    .strip, .strip.on { flex: none; height: 300px; }
+    .strip:not(.on) h3 { writing-mode: horizontal-tb; transform: none; }
+    .strip p { opacity: 1; transform: none; }
+    .place .card { margin: -80px var(--gutter) 0; }
+    .book form { grid-template-columns: 1fr; }
+    .foot .cols { grid-template-columns: 1fr; }
+  }
+
+  /* Movimento ridotto: niente pin, le scene diventano blocchi normali */
+  @media (prefers-reduced-motion: reduce) {
+    .rv { opacity: 1; transform: none; }
+    .day { height: auto; }
+    .sc { position: relative; opacity: 1; height: 100dvh; }
+    .cap .when { display: block; }
+    .clock { display: none; }
+    .hero .bg img { transform: none; }
+    * { transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <a href="#top" class="logo" aria-label="Stella Maris, home">
+    <img class="white" src="img/logo-white.png" alt="Stella Maris Luxury Apartments">
+    <img class="blue" src="img/logo-blue.png" alt="" aria-hidden="true">
+  </a>
+  <nav aria-label="Main">
+    <a href="#apartments">Apartments</a>
+    <a href="#lanzarote">Lanzarote</a>
+    <a href="#location">Location</a>
+    <a href="#book" class="btn">Check availability</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO: il complesso all'alba -->
+  <section class="hero" aria-label="Stella Maris">
+    <div class="bg"><img src="img/hero-2.webp" alt="Stella Maris seafront apartments with infinity pool at sunrise, Puerto Calero"></div>
+    <div class="in">
+      <div>
+        <span class="label rv">Stella Maris · Luxury apartments in Puerto Calero, Lanzarote</span>
+        <h1 class="rv">Let the <em class="hl">Atlantic</em> set the hours of your day.</h1>
+        <p class="rv">A seafront home with nothing on the agenda. This is how a day goes here.</p>
+      </div>
+      <div class="ctas rv">
+        <a href="#book" class="btn btn-light">Check availability</a>
+        <a href="#day" class="link">Start the day <i class="ph-light ph-arrow-down"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RACCONTO: una giornata in 4 scene -->
+  <section class="day" id="day" aria-label="A day at Stella Maris">
+    <div class="sc sc1">
+      <div class="media"><img src="img/s1-mattino.webp" alt="Breakfast on a sea-view terrace in the morning" loading="lazy"></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">07:00</span><span class="label" style="color:#fff;opacity:.8">Morning</span><h2>Coffee on your terrace, the sea still silver.</h2><p>No alarm, no breakfast queue, nowhere you need to be.</p></div>
+    </div>
+    <div class="sc sc2">
+      <div class="media"><img src="img/s2-piscina.webp" alt="Swimming in an infinity pool facing the ocean at midday" loading="lazy"></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">12:00</span><span class="label" style="color:#fff;opacity:.8">Midday</span><h2>Swim toward the horizon.</h2><p>Two infinity pools, and only blue beyond the edge.</p></div>
+    </div>
+    <div class="sc sc3">
+      <div class="media"><video src="video/tramonto.mp4" poster="video/tramonto.jpg" muted loop playsinline preload="none"></video></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">18:00</span><span class="label" style="color:#fff;opacity:.8">Sunset</span><h2>The coast turns gold.</h2><p>Back from the craters and vineyards in time for the sun to go down.</p></div>
+    </div>
+    <div class="sc sc4">
+      <div class="media"><img src="img/s4-notte.webp" alt="Hot tub on a terrace under a starry sky" loading="lazy"></div>
+      <div class="tint"></div>
+      <canvas id="stars" aria-hidden="true"></canvas>
+      <div class="cap"><span class="when">22:00</span><span class="label" style="color:#fff;opacity:.8">Night</span><h2>The stars come out over your hot tub.</h2><p>In the hot tub suites the water stays warm and the sky does the rest. Stella Maris means star of the sea.</p></div>
+    </div>
+    <div class="clock" aria-hidden="true">
+      <div class="time" id="time">07:00</div>
+      <div class="dayline"><i id="dayfill"></i><span class="on">Morning</span><span>Midday</span><span>Sunset</span><span>Night</span></div>
+    </div>
+  </section>
+
+  <!-- POSIZIONAMENTO: dal blu notte al bianco -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <span class="label rv">Why Stella Maris</span>
+      <h2 class="rv">Lanzarote, without the <em class="hl">crowds</em>.</h2>
+      <p class="lead rv">Fifteen apartments, and the whole Atlantic in front of them. Stella Maris brings the privacy of a home of your own and the calm of a boutique retreat to the seafront of Puerto Calero, Lanzarote: sea or pool views, two infinity pools, private hot tubs on selected terraces and an adults-only peace that begins at your door.</p>
+      <div class="facts">
+        <div class="rv"><i class="ph-light ph-heart"></i><h3>Made for two</h3><p>Couples first, and friends travelling together are always welcome.</p></div>
+        <div class="rv"><i class="ph-light ph-cooking-pot"></i><h3>Your own kitchen</h3><p>In every apartment, for breakfast at noon or dinner at midnight.</p></div>
+        <div class="rv"><i class="ph-light ph-bell-simple"></i><h3>A reception</h3><p>Help when you want it, privacy when you don't.</p></div>
+        <div class="rv"><i class="ph-light ph-sun-horizon"></i><h3>Its own energy</h3><p>Produced on site, by the building itself.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPARTAMENTI -->
+  <section class="apts" id="apartments">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <span class="label rv">The apartments</span>
+          <h2 class="rv">Choose how you meet the <em class="hl">morning</em>.</h2>
+          <p class="rv">Three ways to stay: facing the sea, above the pool or out on a terrace of your own.</p>
+        </div>
+        <div class="tabs rv" role="tablist" aria-label="Apartment types">
+          <button role="tab" aria-selected="true" data-i="0">Sea View</button>
+          <button role="tab" aria-selected="false" data-i="1">Pool View</button>
+          <button role="tab" aria-selected="false" data-i="2">Hot Tub Terrace</button>
+        </div>
+      </div>
+    </div>
+    <div class="apt-stage rv">
+      <div class="apt-img on"><img src="img/apt-sea.webp" alt="Sea View apartment living room with floor-to-ceiling windows" loading="lazy"></div>
+      <div class="apt-img"><img src="img/apt-pool.webp" alt="Pool View apartment open-plan living and dining area" loading="lazy"></div>
+      <div class="apt-img"><img src="img/apt-jacuzzi.webp" alt="Hot Tub Terrace with private hot tub at dusk" loading="lazy"></div>
+      <div class="apt-title"><h3 id="aptName">Sea View</h3><p id="aptLine">Wide glass and the ocean as your living room wall.</p></div>
+      <div class="glass" id="glass">
+        <dl class="fade">
+          <div><dt id="k1">View</dt><dd id="v1">Atlantic</dd></div>
+          <div><dt id="k2">Interior</dt><dd id="v2">68 m²</dd></div>
+          <div><dt>Kitchen</dt><dd>Fully equipped</dd></div>
+          <div><dt>Guests</dt><dd>2 to 4</dd></div>
+        </dl>
+        <div class="price fade"><span>From</span><b id="price">€340</b><span>/ night</span></div>
+        <div class="note">Example prices and sizes, to be confirmed.</div>
+        <a href="#book" class="btn btn-light">Check availability</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENERGIA -->
+  <section class="energy" id="energy">
+    <div class="wrap">
+      <span class="label rv">Energy self-sufficient</span>
+      <h2 class="rv">Its own energy. Your own silence.</h2>
+      <p class="lead rv">An eco-conscious way to stay: comfort that is silent, independent and lighter on the island it stands on.</p>
+      <ul>
+        <li class="rv"><i class="ph-light ph-solar-panel"></i><h3>Produced on site</h3><p>How the building generates its energy.</p><span class="tbc">Data TBC</span></li>
+        <li class="rv"><i class="ph-light ph-battery-high"></i><h3>Stored for the night</h3><p>Energy available when the sun goes down.</p><span class="tbc">Data TBC</span></li>
+        <li class="rv"><i class="ph-light ph-leaf"></i><h3>Lighter footprint</h3><p>What it means for Lanzarote.</p><span class="tbc">Data TBC</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LANZAROTE -->
+  <section class="island" id="lanzarote">
+    <div class="wrap">
+      <span class="label rv">Lanzarote</span>
+      <h2 class="rv">An island shaped by fire and wind.</h2>
+      <p class="lead rv">Black sand, red craters and César Manrique's white architecture. Lanzarote is a UNESCO Biosphere Reserve, and every corner of it is within easy reach.</p>
+      <div class="strips rv">
+        <button class="strip on"><img src="img/lz-golfo.webp" alt="El Golfo green lagoon" loading="lazy"><span class="t"><h3>El Golfo</h3><p>The green lagoon under a volcanic cliff.</p></span></button>
+        <button class="strip"><img src="img/lz-papagayo.webp" alt="Papagayo coves" loading="lazy"><span class="t"><h3>Papagayo</h3><p>Sheltered coves on the southern coast.</p></span></button>
+        <button class="strip"><img src="img/lz-timanfaya.webp" alt="Timanfaya National Park" loading="lazy"><span class="t"><h3>Timanfaya</h3><p>The national park of fire mountains.</p></span></button>
+        <button class="strip"><img src="img/lz-manrique.webp" alt="César Manrique architecture" loading="lazy"><span class="t"><h3>César Manrique</h3><p>Art and architecture born from the lava.</p></span></button>
+        <button class="strip"><img src="img/lz-graciosa.webp" alt="La Graciosa seen from the northern cliffs" loading="lazy"><span class="t"><h3>La Graciosa</h3><p>The quiet island off the northern cliffs.</p></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUERTO CALERO -->
+  <section class="place" id="location">
+    <div class="vid"><video src="video/marina.mp4" poster="video/marina.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="card rv">
+      <span class="label">Location</span>
+      <h2>Puerto Calero: life by the marina.</h2>
+      <p class="lead">A small harbour on the south coast, a short drive from Puerto del Carmen: yachts in the morning, dinner by the water at night.</p>
+      <div class="dist">
+        <div><b>TBC</b><span>min to Lanzarote Airport</span></div>
+        <div><b>TBC</b><span>min to Puerto del Carmen</span></div>
+        <div><b>TBC</b><span>min to Timanfaya</span></div>
+        <div><b>TBC</b><span>min to Papagayo</span></div>
+      </div>
+      <a class="link" href="https://maps.google.com/?q=Puerto+Calero+Lanzarote" target="_blank" rel="noopener">Open in Google Maps <i class="ph-light ph-arrow-up-right"></i></a>
+    </div>
+  </section>
+
+  <!-- PRENOTA -->
+  <section class="book" id="book">
+    <div class="wrap grid">
+      <div>
+        <span class="label rv">Reservations</span>
+        <h2 class="rv">Be among our <em class="hl">first</em> guests.</h2>
+        <p class="lead rv">Pick your dates and your view. The ocean is already waiting.</p>
+        <form class="rv" onsubmit="event.preventDefault()">
+          <div class="field"><label for="f-in">Arrival</label><input id="f-in" type="date"></div>
+          <div class="field"><label for="f-out">Departure</label><input id="f-out" type="date"></div>
+          <div class="field"><label for="f-g">Guests</label><select id="f-g"><option>2 adults</option><option>3 adults</option><option>4 adults</option></select></div>
+          <div class="field"><label for="f-a">Apartment</label><select id="f-a"><option>Any</option><option>Sea View</option><option>Pool View</option><option>Hot Tub Terrace</option></select></div>
+          <button class="btn btn-solid" type="submit">Check availability</button>
+          <div class="field" style="grid-column:1/-1"><small>Booking engine to be connected (Lodgify or MotoPress).</small></div>
+        </form>
+      </div>
+      <div class="pic rv"><img src="img/hero-4.webp" alt="Infinity pool facing the ocean at sunset" loading="lazy" id="bookpic"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div><img src="img/logo-white.png" alt="Stella Maris Luxury Apartments"></div>
+      <div><h4>Stay</h4><ul><li><a href="#apartments">Apartments</a></li><li><a href="#day">A day here</a></li><li><a href="#energy">Energy</a></li></ul></div>
+      <div><h4>Discover</h4><ul><li><a href="#lanzarote">Lanzarote</a></li><li><a href="#location">Location</a></li><li><a href="#">Journal</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Puerto Calero, Lanzarote, Spain</li><li>Email TBC</li><li>Phone TBC</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Stella Maris Luxury Apartments</span><span><a href="#">Privacy</a> · <a href="#">Cookies</a> · <a href="#">Legal notice</a></span></div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top"><i class="ph-light ph-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hdr = document.getElementById('hdr');
+  const totop = document.getElementById('totop');
+  totop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+
+  /* Appartamenti: linguette che cambiano foto e scheda vetro */
+  const apts = [
+    { name: 'Sea View', line: 'Wide glass and the ocean as your living room wall.', k1: 'View', v1: 'Atlantic', k2: 'Interior', v2: '68 m²', price: '€340' },
+    { name: 'Pool View', line: 'Open-plan living above the infinity pool, with the ocean just beyond.', k1: 'View', v1: 'Infinity pool', k2: 'Interior', v2: '62 m²', price: '€290' },
+    { name: 'Hot Tub Terrace', line: 'Your own terrace and private hot tub, made for long evenings outside.', k1: 'Outdoor', v1: 'Private hot tub', k2: 'Terrace', v2: '24 m²', price: '€420' }
+  ];
+  const tabs = document.querySelectorAll('.tabs button');
+  const imgs = document.querySelectorAll('.apt-img');
+  const glass = document.getElementById('glass');
+  const set = (id, v) => document.getElementById(id).textContent = v;
+  tabs.forEach(t => t.addEventListener('click', () => {
+    const i = +t.dataset.i, a = apts[i];
+    tabs.forEach(b => b.setAttribute('aria-selected', b === t));
+    imgs.forEach((im, j) => im.classList.toggle('on', j === i));
+    glass.classList.add('swap');
+    setTimeout(() => {
+      set('aptName', a.name); set('aptLine', a.line); set('k1', a.k1); set('v1', a.v1); set('k2', a.k2); set('v2', a.v2); set('price', a.price);
+      glass.classList.remove('swap');
+    }, reduce ? 0 : 420);
+  }));
+
+  /* Lanzarote: una striscia aperta alla volta */
+  const strips = document.querySelectorAll('.strip');
+  strips.forEach(s => {
+    const open = () => strips.forEach(x => x.classList.toggle('on', x === s));
+    s.addEventListener('click', open);
+    s.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) open(); });
+  });
+
+  /* Video: partono solo quando sono visibili */
+  const vids = document.querySelectorAll('video');
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
+  }), { threshold: .15 });
+  vids.forEach(v => vio.observe(v));
+
+  /* Stelle sulla scena delle 22:00 */
+  const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+  let stars = [], starsOn = false, raf;
+  function sizeStars() {
+    const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+    cv.width = r.width * d; cv.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    stars = Array.from({ length: Math.round(r.width * r.height / 9000) }, () => ({
+      x: Math.random() * r.width, y: Math.random() * r.height * .55, s: Math.random() * 1.3 + .3, p: Math.random() * 6.28, v: Math.random() * .8 + .3
+    }));
+  }
+  function drawStars(t) {
+    const r = cv.getBoundingClientRect();
+    ctx.clearRect(0, 0, r.width, r.height);
+    for (const s of stars) {
+      const a = reduce ? .8 : .45 + .45 * Math.sin(t / 1000 * s.v + s.p);
+      ctx.fillStyle = `rgba(255,255,255,${a})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.s, 0, 6.28); ctx.fill();
+    }
+    if (starsOn && !reduce) raf = requestAnimationFrame(drawStars);
+  }
+  sizeStars(); drawStars(0);
+  addEventListener('resize', () => { sizeStars(); drawStars(performance.now()); });
+
+  if (reduce) {
+    hdr.classList.add('solid');
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Hero: zoom lento della foto e comparsa dei testi */
+  gsap.to('.hero .bg img', { scale: 1, duration: 2.6, ease: 'power3.out' });
+  gsap.to('.hero .rv', { opacity: 1, y: 0, duration: 1.3, ease: 'power3.out', stagger: .12, delay: .35 });
+  gsap.to('.hero .bg img', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* Racconto: scena fissata, dissolvenze tra le ore, orologio che scorre */
+  const sc = gsap.utils.toArray('.sc');
+  const hours = [7, 12, 18, 22];
+  const timeEl = document.getElementById('time');
+  const fill = document.getElementById('dayfill');
+  const marks = document.querySelectorAll('.dayline span');
+  const fmt = h => { const m = Math.round((h % 1) * 60 / 5) * 5; const hh = Math.floor(h) + (m === 60 ? 1 : 0); return String(hh).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); };
+
+  gsap.set('.sc .cap', { opacity: 0, y: 30 });
+  gsap.set('.sc1 .cap', { opacity: 1, y: 0 });
+  sc.forEach(s => gsap.set(s.querySelector('.media'), { scale: 1.12 }));
+
+  const tl = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: '.day', start: 'top top', end: () => '+=' + innerHeight * 4, pin: true, scrub: .6, anticipatePin: 1,
+      onUpdate: self => {
+        const p = self.progress * 4;                 // 0..4, una unità per scena
+        const c = Math.min(Math.max(p - .5, 0), 3);  // centro di ogni scena = ora esatta
+        const i = Math.floor(c), f = c - i;
+        const h = i >= 3 ? hours[3] : hours[i] + (hours[i + 1] - hours[i]) * f;
+        timeEl.textContent = fmt(h);
+        fill.style.transform = `scaleX(${self.progress})`;
+        const cur = Math.min(Math.floor(p), 3);
+        marks.forEach((m, j) => m.classList.toggle('on', j === cur));
+      },
+      onToggle: s => { starsOn = s.isActive; if (starsOn) raf = requestAnimationFrame(drawStars); else cancelAnimationFrame(raf); }
+    }
+  });
+  sc.forEach((s, i) => {
+    tl.to(s.querySelector('.media'), { scale: 1, duration: 1 }, i);
+    if (i === 0) return;
+    const prev = sc[i - 1];
+    tl.to(prev.querySelector('.cap'), { opacity: 0, y: -24, duration: .22 }, i - .3)
+      .to(s, { opacity: 1, duration: .35 }, i - .25)
+      .to(s.querySelector('.cap'), { opacity: 1, y: 0, duration: .25 }, i - .05);
+  });
+  tl.to({}, { duration: .4 }, 4);
+
+  /* Header: trasparente sulle foto, chiaro sulle sezioni bianche (creato dopo il pin, così le posizioni tengono conto delle scene) */
+  ScrollTrigger.create({ trigger: '.why', start: 'top 76px', end: 'max', toggleClass: { targets: hdr, className: 'solid' } });
+  ScrollTrigger.create({ start: () => innerHeight, end: 'max', onToggle: s => totop.classList.toggle('show', s.isActive) });
+
+  /* Posizionamento: dal blu notte al bianco calce */
+  gsap.to('.why', { backgroundColor: '#f5f8f9', color: '#142033', ease: 'none', scrollTrigger: { trigger: '.why', start: 'top 75%', end: 'top 40%', scrub: true } });
+
+  /* Comparse allo scorrimento */
+  gsap.utils.toArray('main .rv:not(.hero .rv)').forEach(el => {
+    gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  });
+
+  /* Prenota: leggera parallasse della foto */
+  gsap.to('#bookpic', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '.book', start: 'top bottom', end: 'bottom top', scrub: true } });
+})();
+</script>
+</body>
+</html>

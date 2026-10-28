@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stella Maris · Draft 1</title>
+<meta name="description" content="Fifteen adults-only luxury apartments on the seafront of Puerto Calero, Lanzarote. Sea views, two infinity pools, private hot tubs and energy self-sufficient homes.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="preload" as="image" href="img/hero-2.webp">
+<style>
+/* Bozza v1 "Contemporary" - Stella Maris. Solo tema chiaro (scelta di Marco). */
+:root{
+  --lime:#f4f6f6;          /* bianco calce, freddo */
+  --paper:#fbfcfc;
+  --lava:#15181b;          /* nero lava */
+  --stone:#5b6268;         /* grigio picón per testi secondari (AA su --lime) */
+  --line:#d9dee1;
+  --atlantic:#34557a;      /* blu dal logo, unico accento */
+  --atlantic-ink:#284462;
+  --sky:#7ab8d6;           /* azzurrino della bozza Replit, usato poco */
+  --sky-soft:#eff6fa;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --radius:4px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Jost",system-ui,sans-serif;background:var(--lime);color:var(--lava);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.mono{font-family:"Jost",sans-serif;font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+.hl{color:var(--atlantic)}
+.wrap{max-width:1400px;margin:0 auto;padding:0 var(--pad)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.005em;line-height:1.04;color:inherit}
+.hero h1{font-size:clamp(42px,4.4vw,72px)!important}
+h2{font-size:clamp(40px,5.2vw,80px)}
+.manifesto h2{font-size:clamp(38px,4vw,62px)}
+.stat b{font-family:var(--serif)}
+h2{font-size:clamp(36px,4.8vw,72px)}
+h2[data-reveal]::after{content:"";display:block;width:56px;height:1px;background:var(--sky);margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border-radius:var(--radius);background:var(--atlantic);color:#fff;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;border:0;cursor:pointer;transition:background .3s var(--ease),transform .2s var(--ease)}
+.btn:hover{background:var(--atlantic-ink)}
+.btn:active{transform:scale(.98)}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:3px}
+.link i{transition:transform .3s var(--ease)}
+.link:hover i{transform:translateX(4px)}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:30;height:76px;display:flex;align-items:center;transition:background .4s var(--ease),box-shadow .4s var(--ease)}
+.nav .wrap{width:100%;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.nav__logo{height:44px;position:relative;width:107px}
+.nav__logo img{position:absolute;inset:0;height:44px;width:auto;transition:opacity .4s}
+.nav__logo .blue{opacity:0}
+.nav ul{display:flex;gap:34px;list-style:none;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#fff;transition:color .4s}
+.nav ul a{position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav ul a:hover::after{transform:scaleX(1)}
+.nav .btn{height:44px;padding:0 20px;font-size:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav.is-solid{background:rgba(251,252,252,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav.is-solid ul{color:var(--lava)}
+.nav.is-solid .white{opacity:0}.nav.is-solid .blue{opacity:1}
+.nav.is-solid .btn{background:var(--atlantic);border-color:var(--atlantic)}
+.nav__burger{display:none;background:none;border:0;color:#fff;font-size:28px}
+.nav.is-solid .nav__burger{color:var(--lava)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100dvh;color:#fff;overflow:hidden;display:flex;align-items:flex-end}
+.hero__slides{position:absolute;inset:0;background:#1d2a36}
+.hero__slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.hero__slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.1)}
+.hero__slide.is-on{opacity:1}
+.hero__slide.is-on img{transform:scale(1);transition:transform 9s linear}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,20,28,.45) 0%,rgba(12,20,28,0) 28%,rgba(12,20,28,0) 45%,rgba(12,20,28,.62) 100%);pointer-events:none}
+.hero__inner{position:relative;z-index:2;width:100%;padding-bottom:clamp(36px,6vh,72px);display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:48px;align-items:end}
+.hero h1{font-size:clamp(38px,3.9vw,64px);font-weight:400}
+@media (min-width:1024px){.hero h1 .line>span{white-space:nowrap}}
+.hero h1 .hl{color:#a6d6ee}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line>span{display:block}
+.hero__eyebrow{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:20px}
+.hero__sub{margin-top:22px;max-width:44ch;font-size:19px;font-weight:300;color:rgba(255,255,255,.88)}
+.hero__dots{display:flex;gap:8px;margin-top:34px}
+.hero__dots button{width:44px;height:2px;border:0;background:rgba(255,255,255,.3);cursor:pointer;position:relative;overflow:hidden}
+.hero__dots button span{position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.hero__dots button.is-on span{animation:fill 6s linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+
+/* Pannello vetro sfocato (effetto della bozza Lovable) - approssimazione web con backdrop-filter */
+.glass{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 30px 80px rgba(8,16,24,.35);border-radius:var(--radius);color:#fff}
+@media (prefers-reduced-transparency:reduce){.glass{background:rgba(20,32,44,.88);backdrop-filter:none;-webkit-backdrop-filter:none}}
+.booking{justify-self:end;width:100%;max-width:520px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.booking label{display:block;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.18);cursor:pointer}
+.booking label:nth-child(odd){border-right:1px solid rgba(255,255,255,.18)}
+.booking .mono{display:block;color:rgba(255,255,255,.75);margin-bottom:6px;font-size:11px}
+.booking input,.booking select{width:100%;background:none;border:0;color:#fff;font:inherit;font-size:17px;outline:none;color-scheme:dark}
+.booking select option{color:var(--lava)}
+.booking .row{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px}
+.booking .row p{font-size:13px;color:rgba(255,255,255,.8)}
+.booking .btn{background:#fff;color:var(--atlantic-ink)}
+.booking .btn:hover{background:#e8eef4}
+
+/* ---------- MANIFESTO ---------- */
+.manifesto{padding:clamp(100px,13vw,180px) 0 clamp(80px,10vw,140px)}
+.manifesto__grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
+.label,.manifesto__label{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:22px}
+.manifesto h2{font-size:clamp(34px,3.6vw,56px)}
+.manifesto__text{font-size:clamp(19px,1.6vw,24px);line-height:1.6;font-weight:300;color:var(--lava);max-width:48ch;padding-top:clamp(0px,3vw,46px)}
+.manifesto__text .w{opacity:.28}
+
+.label--light{color:rgba(255,255,255,.85)}
+@media (max-width:1023px){.manifesto__grid{grid-template-columns:1fr}}
+.stats{margin-top:clamp(70px,9vw,120px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.stat{padding:28px 24px 0 0}
+.stat+.stat{padding-left:24px;border-left:1px solid var(--line)}
+.stat b{display:block;font-size:clamp(44px,5vw,72px);font-weight:400;letter-spacing:-.04em;line-height:1}
+.stat b.word{font-size:clamp(26px,2.4vw,36px);line-height:1.15;padding-top:clamp(10px,1.4vw,22px)}
+.stat span{display:block;margin-top:12px;color:var(--stone);font-size:15px}
+
+/* ---------- APARTMENTS (pan orizzontale) ---------- */
+.apts{background:var(--sky-soft)}
+.apts__head{padding-top:clamp(80px,10vw,130px);padding-bottom:48px;display:flex;align-items:end;justify-content:space-between;gap:40px}
+.apts__head h2{max-width:19ch}
+.apts__lead{margin-top:22px;max-width:46ch;color:var(--stone)}
+.apts__pin{overflow:hidden}
+.apts__track{display:flex;gap:24px;padding:0 var(--pad) clamp(80px,9vw,120px);width:max-content}
+.apt{position:relative;width:min(78vw,1180px);height:min(78vh,760px);border-radius:var(--radius);overflow:hidden;flex:none;background:#223}
+.apt>img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
+.apt::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,18,26,.55),rgba(10,18,26,.05) 55%,rgba(10,18,26,.2));pointer-events:none}
+.apt__title{position:absolute;z-index:2;left:clamp(24px,4vw,56px);bottom:clamp(24px,4vw,56px);color:#fff;width:min(420px,44%)}
+.apt__title h3{font-size:clamp(36px,4.2vw,66px);max-width:9ch}
+.apt__title p{margin-top:14px;font-size:16px;color:rgba(255,255,255,.85);max-width:32ch}
+.apt .glass{background:rgba(14,24,34,.34);position:absolute;z-index:2;right:clamp(20px,3vw,40px);bottom:clamp(20px,3vw,40px);width:min(360px,40%)}
+.spec{display:grid;grid-template-columns:1fr 1fr}
+.spec div{padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.18)}
+.spec div:nth-child(odd){border-right:1px solid rgba(255,255,255,.18)}
+.spec .mono{display:block;font-size:10.5px;color:rgba(255,255,255,.72);margin-bottom:6px}
+.spec strong{font-weight:400;font-size:19px;line-height:1.2}
+.apt .glass .pricebar{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.apt .glass .pricebar strong{font-weight:400;font-size:22px}
+.apt .glass .btn{height:44px;padding:0 18px;font-size:14px;background:#fff;color:var(--atlantic-ink)}
+
+/* ---------- WELLNESS (collage) ---------- */
+.well{padding:clamp(100px,13vw,180px) 0}
+.well__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:minmax(0,auto);gap:20px;align-items:start}
+.well__intro{grid-column:1/6;grid-row:1;padding-top:40px}
+.well__intro p{margin-top:24px;color:var(--stone);max-width:38ch}
+.ph{overflow:hidden;border-radius:var(--radius);position:relative}
+.ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.12)}
+.ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;color:#fff;font-size:14px;background:linear-gradient(0deg,rgba(10,18,26,.55),transparent)}
+.w1{grid-column:7/13;grid-row:1;aspect-ratio:4/3}
+.w2{grid-column:1/5;grid-row:2;aspect-ratio:3/4;margin-top:60px}
+.w3{grid-column:5/9;grid-row:2;aspect-ratio:1/1;margin-top:-80px}
+.w4{grid-column:9/13;grid-row:2;aspect-ratio:4/5;margin-top:40px}
+.w5{grid-column:3/9;grid-row:3;aspect-ratio:16/9;margin-top:20px}
+
+/* ---------- ENERGY ---------- */
+.energy{background:var(--paper);padding:clamp(100px,12vw,170px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.energy__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,96px);align-items:center}
+.energy h2{max-width:none}
+.energy__lead{margin-top:26px;font-size:19px;max-width:40ch;color:var(--stone)}
+.energy__cards{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ecard{border:1px solid #dcebf3;border-radius:var(--radius);padding:22px;background:var(--sky-soft)}
+.ecard i{font-size:26px;color:var(--atlantic)}
+.ecard h3{font-size:19px;letter-spacing:-.01em;margin-top:18px;line-height:1.25}
+.ecard p{margin-top:6px;font-size:15px;color:var(--stone)}
+.ecard .tbc{display:inline-block;margin-top:14px;color:var(--atlantic)}
+.energy .ph{aspect-ratio:4/5}
+.energy__media video{width:100%;height:100%;object-fit:cover}
+
+/* ---------- LANZAROTE ---------- */
+.island{padding-top:clamp(100px,12vw,160px)}
+.island__stage{position:relative;height:100dvh;overflow:hidden}
+.island__media{position:absolute;inset:0;clip-path:inset(12% 18% 12% 18% round 4px);will-change:clip-path}
+.island__media video{width:100%;height:100%;object-fit:cover}
+.island__media::after{content:"";position:absolute;inset:0;background:rgba(10,18,26,.28)}
+.island__title{position:absolute;z-index:2;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 var(--pad)}
+.island__title h2{max-width:14ch;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.places{padding:clamp(70px,8vw,110px) 0 clamp(100px,12vw,160px)}
+.places__head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:36px}
+.places__head p{max-width:46ch;color:var(--stone)}
+.places__nav{display:flex;gap:10px}
+.places__nav button{width:48px;height:48px;border-radius:var(--radius);border:1px solid var(--line);background:var(--paper);font-size:20px;cursor:pointer;color:var(--lava);transition:background .3s}
+.places__nav button:hover{background:#fff}
+.places__row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,30%);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--pad);padding:0 var(--pad) 8px;scrollbar-width:none;max-width:1400px;margin:0 auto}
+.places__row::-webkit-scrollbar{display:none}
+.place{scroll-snap-align:start}
+.place .ph{aspect-ratio:4/5}
+.place .ph img,.place .ph video{width:100%;height:100%;object-fit:cover;transform:none;transition:transform 1.2s var(--ease)}
+.place:hover .ph img,.place:hover .ph video{transform:scale(1.05)}
+.place h3{font-size:22px;letter-spacing:-.015em;margin-top:18px;line-height:1.2}
+.place p{color:var(--stone);font-size:15px;margin-top:4px}
+
+/* ---------- LOCATION ---------- */
+.loc{background:var(--paper);border-top:1px solid var(--line)}
+.loc__grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);min-height:88vh}
+.loc__media{position:relative;overflow:hidden}
+.loc__media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.loc__text{padding:clamp(60px,8vw,120px) var(--pad);display:flex;flex-direction:column;justify-content:center}
+.loc__text h2{font-size:clamp(32px,3vw,52px)}
+.loc__text>p{margin-top:22px;color:var(--stone);max-width:40ch}
+.dist{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px 24px}
+.dist b{display:block;font-weight:400;font-size:30px;letter-spacing:-.03em}
+.dist span{color:var(--stone);font-size:14px}
+.loc__text .link{margin-top:44px;align-self:flex-start}
+
+/* ---------- BOOK ---------- */
+.book{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;color:#fff}
+.book>img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover}
+.book::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,18,26,.6),rgba(10,18,26,.15))}
+.book .wrap{position:relative;z-index:2;width:100%}
+.book .glass{max-width:560px;padding:clamp(28px,4vw,52px)}
+.book h2{font-size:clamp(38px,4.6vw,68px)}
+.book p{margin-top:18px;color:rgba(255,255,255,.85);max-width:36ch}
+.book .btn{margin-top:32px;background:#fff;color:var(--atlantic-ink)}
+
+/* ---------- FOOTER ---------- */
+.foot{padding:72px 0 40px;background:var(--lime)}
+.foot__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot img{height:56px;width:auto}
+.foot h4{font-weight:500;font-size:14px;margin-bottom:14px}
+.foot li{list-style:none;color:var(--stone);font-size:15px;margin-bottom:8px}
+.foot li a:hover{color:var(--lava)}
+.foot__bottom{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--stone);font-size:13px;gap:20px;flex-wrap:wrap}
+
+/* ---------- TORNA SU ---------- */
+.totop{position:fixed;right:22px;bottom:22px;z-index:25;width:48px;height:48px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(251,252,252,.9);backdrop-filter:blur(10px);color:var(--lava);font-size:20px;display:grid;place-items:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.totop.is-on{opacity:1;transform:none;pointer-events:auto}
+
+/* punti di forza sotto il posizionamento: 4 card con icona (2x2 su mobile) */
+.feats{list-style:none;margin-top:clamp(64px,8vw,110px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.feat{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px 32px;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s}
+.feat::before{content:"";position:absolute;left:26px;right:26px;top:-1px;height:2px;background:var(--sky);transform:scaleX(.18);transform-origin:left;transition:transform .6s var(--ease)}
+.feat:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(40,68,98,.08);border-color:#dbe6ee}
+.feat:hover::before{transform:scaleX(1)}
+.feat__icon{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--sky-soft);color:var(--atlantic);font-size:24px}
+.feat h3{font-size:clamp(24px,2vw,30px);margin-top:26px;line-height:1.1}
+.feat p{margin-top:10px;font-size:15px;line-height:1.55;color:var(--stone)}
+@media (max-width:1023px){.feats{grid-template-columns:1fr 1fr;gap:12px}.feat{padding:24px 18px}}
+@media (max-width:420px){.feat h3{font-size:22px}.feat p{font-size:14px}}
+
+/* animazione luxury delle card (gestita da GSAP; senza JS o con movimento ridotto restano ferme e visibili) */
+.feat{overflow:hidden}
+.feat::before{display:none}
+.feat__line{position:absolute;left:26px;right:26px;top:0;height:2px;background:var(--sky);transform:scaleX(.18);transform-origin:left;transition:transform .6s var(--ease)}
+.feat:hover .feat__line{transform:scaleX(1)}
+.feat__icon{position:relative;transition:background .5s var(--ease),color .5s var(--ease),transform .6s var(--ease)}
+.feat__ring{position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--sky);opacity:0;pointer-events:none}
+.feat:hover .feat__icon{background:var(--atlantic);color:#fff;transform:rotate(-8deg)}
+.feat__shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);transform:translateX(-120%)}
+/* reveal base (gestito da JS) */
+.js [data-reveal]{opacity:0;transform:translateY(28px)}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:1023px){
+  .nav ul,.nav .btn{display:none}
+  .nav__burger{display:block}
+  .hero__inner{grid-template-columns:1fr;gap:28px}
+  .booking{justify-self:stretch;max-width:none}
+  .apts__head{flex-direction:column;align-items:flex-start}
+  .apts__track{flex-direction:column;width:auto}
+  .apt{width:100%;height:auto;aspect-ratio:auto;display:flex;flex-direction:column;background:var(--lava)}
+  .apt>img{height:56vh;transform:none}
+  .apt::after{display:none}
+  .apt__title{position:absolute;top:auto;bottom:auto;left:20px;right:20px;margin-top:calc(-56vh + 24px);position:relative;order:-1;display:none}
+  .apt .glass{position:relative;right:auto;bottom:auto;width:100%;border-radius:0;background:rgba(21,24,27,.96)}
+  .apt .glass .head{display:block!important;padding:22px 20px 6px}
+  .well__grid{grid-template-columns:1fr 1fr;gap:12px}
+  .well__intro{grid-column:1/-1;padding-top:0;margin-bottom:24px}
+  .w1{grid-column:1/-1;grid-row:auto}
+  .w2,.w3,.w4,.w5{grid-row:auto;margin-top:0}
+  .w2{grid-column:1/2}.w3{grid-column:2/3;aspect-ratio:3/4}.w4{grid-column:1/2}.w5{grid-column:2/3;aspect-ratio:4/5}
+  .energy__grid,.loc__grid{grid-template-columns:1fr}
+  .loc__media{min-height:56vh}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat{padding-bottom:28px}
+  .places__row{grid-auto-columns:78%}
+  .foot__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .booking{grid-template-columns:1fr 1fr}
+  .booking .row{flex-direction:column;align-items:stretch}
+  .booking .row p{display:none}
+  .booking .btn{justify-content:center}
+  .energy__cards{grid-template-columns:1fr}
+  .places__nav{display:none}
+}
+.apt .glass .head{display:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .js [data-reveal]{opacity:1;transform:none}
+  .manifesto__text .w{opacity:1}
+  .island__media{clip-path:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="nav__logo" aria-label="Stella Maris, home">
+      <img class="white" src="img/logo-white.png" alt="Stella Maris Luxury Apartments">
+      <img class="blue" src="img/logo-blue.png" alt="" aria-hidden="true">
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#apartments">Apartments</a></li>
+        <li><a href="#wellness">Wellness</a></li>
+        <li><a href="#energy">Energy</a></li>
+        <li><a href="#lanzarote">Lanzarote</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </nav>
+    <a href="#book" class="btn">Check availability</a>
+    <button class="nav__burger" aria-label="Open menu"><i class="ph-light ph-list"></i></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO: slideshow provvisorio con i render del complesso (bozze Lovable/Replit di Marco) -->
+<section class="hero" aria-label="Stella Maris">
+  <div class="hero__slides">
+    <div class="hero__slide is-on"><img src="img/hero-2.webp" alt="White apartment buildings with infinity pool above the Atlantic"></div>
+    <div class="hero__slide"><img src="img/hero-3.webp" alt="Infinity pool with sun loungers facing the ocean at sunset" loading="lazy"></div>
+    <div class="hero__slide"><img src="img/hero-4.webp" alt="Infinity pool edge meeting the Atlantic horizon" loading="lazy"></div>
+    <div class="hero__slide"><img src="img/hero-1.webp" alt="Stella Maris apartments on the volcanic coast of Puerto Calero at sunset" loading="lazy"></div>
+  </div>
+  <div class="wrap hero__inner">
+    <div>
+      <p class="hero__eyebrow" data-hero-fade>Stella Maris · Luxury apartments in Puerto Calero, Lanzarote</p>
+      <h1><span class="line"><span>Your terrace. The Atlantic.</span></span><span class="line"><span>That's the real <span class="hl">luxury</span>.</span></span></h1>
+      <p class="hero__sub" data-hero-fade>Wake without an alarm, cook when you feel like it and let the ocean set the pace of your days.</p>
+      <div class="hero__dots" data-hero-fade aria-label="Slides"></div>
+    </div>
+    <form class="booking glass" data-hero-fade onsubmit="return false" aria-label="Check availability">
+      <label><span class="mono">Arrival</span><input type="date" aria-label="Arrival date"></label>
+      <label><span class="mono">Departure</span><input type="date" aria-label="Departure date"></label>
+      <label><span class="mono">Guests</span><select aria-label="Guests"><option>2 adults</option><option>3 adults</option><option>4 adults</option></select></label>
+      <label><span class="mono">Apartment</span><select aria-label="Apartment type"><option>Any</option><option>Sea View</option><option>Pool View</option><option>Hot Tub Terrace</option></select></label>
+      <div class="row"><p>Book direct with Stella Maris</p><button class="btn" type="submit">Check availability</button></div>
+    </form>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="wrap">
+    <div class="manifesto__grid">
+      <div><p class="manifesto__label" data-reveal>Why Stella Maris</p><h2 data-reveal>Lanzarote, without the <span class="hl">crowds</span>.</h2></div>
+      <p class="manifesto__text" id="manifesto">Fifteen apartments, and the whole Atlantic in front of them. Stella Maris brings the privacy of a home of your own and the calm of a boutique retreat to the seafront of Puerto Calero, Lanzarote: sea or pool views, two infinity pools, private hot tubs on selected terraces and an adults-only peace that begins at your door.</p>
+    </div>
+    <ul class="feats">
+      <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-heart"></i></span><h3>Made for two</h3><p>Couples first, and friends travelling together are always welcome.</p></li>
+      <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-cooking-pot"></i></span><h3>Your own kitchen</h3><p>In every apartment, for breakfast at noon or dinner at midnight.</p></li>
+      <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-bell-simple"></i></span><h3>A reception</h3><p>Help when you want it, privacy when you don't.</p></li>
+      <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-leaf"></i></span><h3>Its own energy</h3><p>Produced on site, by the building itself.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- APARTMENTS: pan orizzontale su desktop, colonna su mobile -->
+<section class="apts" id="apartments">
+  <div class="wrap apts__head">
+    <div><p class="label" data-reveal>The apartments</p><h2 data-reveal>Choose how you meet the <span class="hl">morning</span>.</h2><p class="apts__lead" data-reveal>Three ways to stay: facing the sea, above the pool or out on a terrace of your own.</p></div>
+    <a href="#" class="link" data-reveal>All apartments <i class="ph-light ph-arrow-right"></i></a>
+  </div>
+  <div class="apts__pin">
+    <div class="apts__track">
+      <article class="apt">
+        <img src="img/apt-sea.webp" alt="Living room with floor-to-ceiling windows facing the ocean" loading="lazy">
+        <div class="apt__title"><h3>Sea View</h3><p>Wide glass and the ocean as your living room wall.</p></div>
+        <div class="glass">
+          <div class="head"><h3 style="font-size:28px">Sea View</h3></div>
+          <div class="spec">
+            <div><span class="mono">View</span><strong>Atlantic</strong></div>
+            <div><span class="mono">Interior</span><strong>68 m²</strong></div>
+            <div><span class="mono">Kitchen</span><strong>Fully equipped</strong></div>
+            <div><span class="mono">Guests</span><strong>2 to 4</strong></div>
+          </div>
+          <div class="pricebar"><div><span class="mono" style="color:rgba(255,255,255,.72);font-size:10.5px">From</span><br><strong>€340 / night</strong></div><a href="#" class="btn">View</a></div>
+        </div>
+      </article>
+      <article class="apt">
+        <img src="img/apt-pool.webp" alt="Bright dining and living area with a sea view" loading="lazy">
+        <div class="apt__title"><h3>Pool View</h3><p>Open-plan living above the infinity pool, with the ocean just beyond.</p></div>
+        <div class="glass">
+          <div class="head"><h3 style="font-size:28px">Pool View</h3></div>
+          <div class="spec">
+            <div><span class="mono">View</span><strong>Infinity pool</strong></div>
+            <div><span class="mono">Interior</span><strong>62 m²</strong></div>
+            <div><span class="mono">Kitchen</span><strong>Fully equipped</strong></div>
+            <div><span class="mono">Guests</span><strong>2 to 4</strong></div>
+          </div>
+          <div class="pricebar"><div><span class="mono" style="color:rgba(255,255,255,.72);font-size:10.5px">From</span><br><strong>€290 / night</strong></div><a href="#" class="btn">View</a></div>
+        </div>
+      </article>
+      <article class="apt">
+        <img src="img/apt-jacuzzi.webp" alt="Private terrace with hot tub (jacuzzi) overlooking the marina at dusk" loading="lazy">
+        <div class="apt__title"><h3>Hot Tub Terrace</h3><p>Your own terrace and private hot tub, made for long evenings outside.</p></div>
+        <div class="glass">
+          <div class="head"><h3 style="font-size:28px">Hot Tub Terrace</h3></div>
+          <div class="spec">
+            <div><span class="mono">Outdoor</span><strong>Private hot tub</strong></div>
+            <div><span class="mono">Terrace</span><strong>24 m²</strong></div>
+            <div><span class="mono">Kitchen</span><strong>Fully equipped</strong></div>
+            <div><span class="mono">Guests</span><strong>2 to 4</strong></div>
+          </div>
+          <div class="pricebar"><div><span class="mono" style="color:rgba(255,255,255,.72);font-size:10.5px">From</span><br><strong>€420 / night</strong></div><a href="#" class="btn">View</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WELLNESS: collage asimmetrico con parallasse -->
+<section class="well" id="wellness">
+  <div class="wrap well__grid">
+    <div class="well__intro">
+      <p class="label" data-reveal>Pools &amp; wellness</p>
+      <h2 data-reveal>Swim toward the horizon.</h2>
+      <p data-reveal>Lose track of time at the pool's edge, read in the shade, fall asleep to the sound of the waves. Doing nothing, done properly.</p>
+    </div>
+    <figure class="ph w1" data-speed="-6"><img src="img/well-1.webp" alt="Guest swimming to the edge of an infinity pool above the sea" loading="lazy"><figcaption>Infinity pools</figcaption></figure>
+    <figure class="ph w2" data-speed="8"><img src="img/well-2.webp" alt="Breakfast in a bathrobe on a sea-view balcony" loading="lazy"><figcaption>Slow mornings</figcaption></figure>
+    <figure class="ph w3" data-speed="-10"><img src="img/well-3.webp" alt="Freestanding bathtub in front of a large window with sea view" loading="lazy"><figcaption>Bathrooms with a view</figcaption></figure>
+    <figure class="ph w4" data-speed="6"><img src="img/well-4.webp" alt="Hot stone massage" loading="lazy"><figcaption>Time for yourself</figcaption></figure>
+    <figure class="ph w5" data-speed="-4"><img src="img/well-5.webp" alt="Covered lounge terrace with fire pit at sunset" loading="lazy"><figcaption>Evenings outside</figcaption></figure>
+  </div>
+</section>
+
+<!-- ENERGY: niente numeri finché non arriva il questionario -->
+<section class="energy" id="energy">
+  <div class="wrap energy__grid">
+    <div>
+      <p class="label" data-reveal>Energy self-sufficient</p>
+      <h2 data-reveal>Its own energy.<br>Your own <span class="hl">silence</span>.</h2>
+      <p class="energy__lead" data-reveal>An eco-conscious way to stay: comfort that is silent, independent and lighter on the island it stands on.</p>
+      <div class="energy__cards">
+        <div class="ecard" data-reveal><i class="ph-light ph-sun"></i><h3>Produced on site</h3><p>How the building generates its energy.</p><span class="mono tbc">Data TBC</span></div>
+        <div class="ecard" data-reveal><i class="ph-light ph-battery-charging"></i><h3>Stored for the night</h3><p>Energy available when the sun goes down.</p><span class="mono tbc">Data TBC</span></div>
+        <div class="ecard" data-reveal><i class="ph-light ph-wind"></i><h3>Silent comfort</h3><p>Comfort without noise or compromise.</p><span class="mono tbc">Data TBC</span></div>
+        <div class="ecard" data-reveal><i class="ph-light ph-leaf"></i><h3>Lighter footprint</h3><p>What it means for Lanzarote.</p><span class="mono tbc">Data TBC</span></div>
+      </div>
+    </div>
+    <figure class="ph energy__media" data-speed="-6"><video src="video/la-geria.mp4" poster="video/la-geria.jpg" muted loop playsinline preload="none" aria-label="Vineyards of La Geria growing in volcanic picón"></video></figure>
+  </div>
+</section>
+
+<!-- LANZAROTE: video che si apre a tutto schermo con lo scroll -->
+<section class="island" id="lanzarote">
+  <div class="island__stage" id="islandStage">
+    <div class="island__media" id="islandMedia">
+      <video src="video/famara.mp4" poster="video/famara.jpg" muted loop playsinline preload="metadata"></video>
+    </div>
+    <div class="island__title"><div><p class="label label--light">Lanzarote</p><h2>An island shaped by fire and wind.</h2></div></div>
+  </div>
+  <div class="places">
+    <div class="wrap places__head">
+      <p data-reveal>Black sand, red craters and César Manrique's white architecture. Lanzarote is a UNESCO Biosphere Reserve, and every corner of it is within easy reach.</p>
+      <div class="places__nav"><button aria-label="Previous" data-dir="-1"><i class="ph-light ph-arrow-left"></i></button><button aria-label="Next" data-dir="1"><i class="ph-light ph-arrow-right"></i></button></div>
+    </div>
+    <div class="places__row" id="places">
+      <article class="place"><div class="ph"><video src="video/el-golfo.mp4" poster="video/el-golfo.jpg" muted loop playsinline preload="none"></video></div><h3>El Golfo</h3><p>The green lagoon under a volcanic cliff.</p></article>
+      <article class="place"><div class="ph"><img src="img/lz-papagayo.webp" alt="Papagayo beach between volcanic cliffs" loading="lazy"></div><h3>Papagayo</h3><p>Sheltered coves on the southern coast.</p></article>
+      <article class="place"><div class="ph"><img src="img/lz-timanfaya.webp" alt="Red and ochre volcanoes of Timanfaya" loading="lazy"></div><h3>Timanfaya</h3><p>The national park of fire mountains.</p></article>
+      <article class="place"><div class="ph"><img src="img/lz-manrique.webp" alt="White pool carved into volcanic rock" loading="lazy"></div><h3>César Manrique</h3><p>Art and architecture born from the lava.</p></article>
+      <article class="place"><div class="ph"><img src="img/lz-graciosa.webp" alt="View over La Graciosa island from the northern cliffs" loading="lazy"></div><h3>La Graciosa</h3><p>The quiet island off the northern cliffs.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="loc" id="location">
+  <div class="loc__grid">
+    <div class="loc__media"><video src="video/marina.mp4" poster="video/marina.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="loc__text">
+      <p class="label" data-reveal>Location</p>
+      <h2 data-reveal>Puerto Calero:<br>life by the marina.</h2>
+      <p data-reveal>A small harbour on the south coast, a short drive from Puerto del Carmen: yachts in the morning, dinner by the water at night.</p>
+      <div class="dist">
+        <div data-reveal><b>TBC min</b><span>Lanzarote Airport</span></div>
+        <div data-reveal><b>TBC min</b><span>Puerto del Carmen</span></div>
+        <div data-reveal><b>TBC min</b><span>Timanfaya National Park</span></div>
+        <div data-reveal><b>TBC min</b><span>Papagayo beaches</span></div>
+      </div>
+      <a href="#" class="link" data-reveal>Open in Google Maps <i class="ph-light ph-arrow-up-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="book">
+  <img src="img/book.webp" alt="Lounge terrace with lanterns overlooking the coast at sunset" loading="lazy" data-parallax>
+  <div class="wrap">
+    <div class="glass" data-reveal>
+      <p class="label label--light">Reservations</p>
+      <h2>Be among our first guests.</h2>
+      <p>Pick your dates and your view. The ocean is already waiting.</p>
+      <a href="#top" class="btn">Check availability <i class="ph-light ph-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div><img src="img/logo-blue.png" alt="Stella Maris Luxury Apartments"></div>
+      <div><h4>Stay</h4><ul><li><a href="#apartments">Apartments</a></li><li><a href="#wellness">Wellness</a></li><li><a href="#energy">Energy</a></li></ul></div>
+      <div><h4>Discover</h4><ul><li><a href="#lanzarote">Lanzarote</a></li><li><a href="#location">Location</a></li><li><a href="#">Journal</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Puerto Calero, Lanzarote, Spain</li><li>Email TBC</li><li>Phone TBC</li></ul></div>
+    </div>
+    <div class="foot__bottom"><span>© 2026 Stella Maris Luxury Apartments</span><span><a href="#">Privacy</a> &nbsp; <a href="#">Cookies</a> &nbsp; <a href="#">Legal notice</a></span></div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top"><i class="ph-light ph-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  /* Slideshow hero: dissolvenza + lento zoom, indicatori a barra */
+  const slides=[...document.querySelectorAll('.hero__slide')], dots=document.querySelector('.hero__dots');
+  let cur=0, timer;
+  slides.forEach((_,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Show image '+(i+1));b.innerHTML='<span></span>';b.onclick=()=>go(i,true);dots.appendChild(b)});
+  const bars=[...dots.children];
+  function go(i,manual){slides[cur].classList.remove('is-on');bars[cur].classList.remove('is-on');cur=i;slides[cur].classList.add('is-on');void bars[cur].offsetWidth;bars[cur].classList.add('is-on');if(manual){clearInterval(timer);start()}}
+  function start(){if(!reduce)timer=setInterval(()=>go((cur+1)%slides.length),6000)}
+  bars[0].classList.add('is-on');start();
+
+  /* Torna su + nav solida: IntersectionObserver sull'hero */
+  const nav=document.getElementById('nav'), top=document.getElementById('totop');
+  new IntersectionObserver(([e])=>{nav.classList.toggle('is-solid',!e.isIntersecting);top.classList.toggle('is-on',!e.isIntersecting)},{rootMargin:'-80px 0px 0px 0px'}).observe(document.querySelector('.hero'));
+  top.onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+
+  /* Frecce dei luoghi */
+  const row=document.getElementById('places');
+  document.querySelectorAll('.places__nav button').forEach(b=>b.onclick=()=>row.scrollBy({left:row.clientWidth*.6*b.dataset.dir,behavior:'smooth'}));
+
+  /* Video: partono solo quando sono visibili */
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){v.play().catch(()=>{})}else v.pause()}),{threshold:.2});
+  document.querySelectorAll('video').forEach(v=>vio.observe(v));
+
+  if(reduce||!window.gsap){document.querySelectorAll('[data-reveal]').forEach(el=>{el.style.opacity=1;el.style.transform='none'});return}
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Hero: titolo che sale riga per riga, poi testo e prenotazione */
+  gsap.from('.hero h1 .line>span',{yPercent:110,duration:1.2,ease:'expo.out',stagger:.12,delay:.2});
+  gsap.from('[data-hero-fade]',{opacity:0,y:24,duration:1,ease:'expo.out',stagger:.12,delay:.7});
+
+  /* Manifesto: le parole si accendono mentre scorri (racconto) */
+  const m=document.getElementById('manifesto');
+  m.innerHTML=m.textContent.split(' ').map(w=>'<span class="w">'+w+'</span>').join(' ');
+  gsap.to('#manifesto .w',{opacity:1,stagger:.05,ease:'none',scrollTrigger:{trigger:m,start:'top 75%',end:'bottom 40%',scrub:true}});
+
+  /* Numeri che contano */
+  document.querySelectorAll('[data-count]').forEach(el=>{const n=+el.dataset.count,o={v:0};gsap.to(o,{v:n,duration:1.6,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'},onUpdate:()=>el.textContent=Math.round(o.v)})});
+
+  /* Comparse generiche */
+  gsap.utils.toArray('[data-reveal]').forEach(el=>gsap.to(el,{opacity:1,y:0,duration:1,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 88%'}}));
+
+  /* Card "Why Stella Maris": entrata in sequenza (sipario, filetto, icona con onda, testi, riflesso) */
+  gsap.utils.toArray('.feat').forEach((card,i)=>{
+    const tl=gsap.timeline({delay:i*.16,scrollTrigger:{trigger:'.feats',start:'top 82%'}});
+    tl.from(card,{clipPath:'inset(100% 0% 0% 0%)',y:40,duration:1.3,ease:'expo.out',clearProps:'transform,clipPath'})
+      .fromTo(card.querySelector('.feat__line'),{scaleX:0},{scaleX:1,duration:.9,ease:'power3.inOut'},'-=.9')
+      .to(card.querySelector('.feat__line'),{scaleX:.18,duration:.8,ease:'power3.inOut',clearProps:'transform'})
+      .from(card.querySelector('.feat__icon'),{scale:.4,rotate:-25,opacity:0,duration:1,ease:'expo.out',clearProps:'transform,opacity'},'-=1.5')
+      .fromTo(card.querySelector('.feat__ring'),{scale:.8,opacity:.7},{scale:1.7,opacity:0,duration:1.4,ease:'power2.out'},'-=.8')
+      .from(card.querySelectorAll('h3,p'),{y:16,opacity:0,duration:.9,ease:'expo.out',stagger:.08},'-=1.3')
+      .to(card.querySelector('.feat__shine'),{x:'120%',duration:1.4,ease:'power2.inOut'},'-=.7');
+  });
+  const mm=gsap.matchMedia();
+  mm.add('(min-width:1024px)',()=>{
+    /* Appartamenti: la sezione si ferma e scorre in orizzontale */
+    const track=document.querySelector('.apts__track');
+    const dist=()=>track.scrollWidth-innerWidth;
+    gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.apts__pin',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+    gsap.utils.toArray('.apt>img').forEach(img=>gsap.to(img,{scale:1,ease:'none',scrollTrigger:{trigger:'.apts__pin',start:'top top',end:()=>'+='+dist(),scrub:true}}));
+
+    /* Collage benessere: profondità con velocità diverse */
+    gsap.utils.toArray('[data-speed]').forEach(f=>{gsap.to(f,{yPercent:+f.dataset.speed,ease:'none',scrollTrigger:{trigger:f,start:'top bottom',end:'bottom top',scrub:true}})});
+
+    /* Lanzarote: il video si apre fino a tutto schermo */
+    gsap.to('#islandMedia',{clipPath:'inset(0% 0% 0% 0% round 0px)',ease:'none',scrollTrigger:{trigger:'#islandStage',start:'top top',end:'+=90%',pin:true,scrub:true}});
+  });
+  mm.add('(max-width:1023px)',()=>{gsap.set('#islandMedia',{clipPath:'inset(0% 0% 0% 0%)'})});
+
+  /* Foto che si "scoprono": zoom in uscita */
+  gsap.utils.toArray('.well .ph img, .energy .ph img').forEach(img=>gsap.to(img,{scale:1,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom 30%',scrub:true}}));
+  gsap.to('[data-parallax]',{yPercent:8,ease:'none',scrollTrigger:{trigger:'.book',start:'top bottom',end:'bottom top',scrub:true}});
+})();
+</script>
+</body>
+</html>
