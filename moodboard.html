@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stella Maris · Mood boards</title>
+<style>
+  @font-face { font-family: "Bw Darius"; src: url(bozza-2/_font-test/BwDarius-Light.woff2) format("woff2"); font-weight: 300; font-display: swap; }
+  @font-face { font-family: "Bw Darius"; src: url(bozza-2/_font-test/BwDarius-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500&display=swap" rel="stylesheet">
+<style>
+  :root { --gutter: clamp(16px, 5vw, 72px); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f8f9; color: #142033; font: 400 16px/1.6 "General Sans", system-ui, sans-serif; overflow-x: hidden; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .top { padding: clamp(48px, 8vw, 100px) var(--gutter) 40px; max-width: 1400px; margin: 0 auto; }
+  .top img.logo { width: 150px; height: auto; }
+  .top h1 { font: 400 clamp(32px, 4vw, 52px)/1.1 Georgia, serif; margin-top: 32px; }
+  .note { margin-top: 32px; padding: 24px 28px; border: 1px solid rgba(20,32,51,.16); background: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; font-size: 15px; color: #445064; }
+  .note b { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #142033; margin-bottom: 8px; }
+  .nav { margin-top: 28px; display: flex; gap: 24px; flex-wrap: wrap; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+  .nav a { color: inherit; border-bottom: 1px solid currentColor; text-decoration: none; padding-bottom: 3px; }
+
+  /* Ogni tavola definisce i suoi font e colori */
+  .board { padding: clamp(64px, 8vw, 110px) var(--gutter); border-top: 1px solid rgba(20,32,51,.12); }
+  .board .in { max-width: 1400px; margin: 0 auto; }
+  .b1 { --t: "Jost", sans-serif; --tw: 400; --b: "Jost", sans-serif; --bg: #f4f6f6; --ink: #15181b; --muted: #5b6268; --acc: #34557a; --hl: #34557a; background: var(--bg); }
+  .b2 { --t: "Cormorant Garamond", serif; --tw: 500; --b: "Jost", sans-serif; --bg: #fbfcfc; --ink: #15181b; --muted: #5b6268; --acc: #34557a; --hl: #34557a; background: var(--bg); }
+  .b3 { --t: "Bw Darius", serif; --tw: 300; --b: "General Sans", sans-serif; --bg: #f5f8f9; --ink: #142033; --muted: #556173; --acc: #142033; --hl: #7ab8d6; background: var(--bg); }
+  .board, .board p, .board span, .board small { font-family: var(--b); color: var(--ink); }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted) !important; }
+  .head h2 { font-family: var(--t); font-weight: var(--tw); font-size: clamp(36px, 4.4vw, 64px); line-height: 1.05; margin-top: 14px; }
+  .words { display: flex; gap: 8px; flex-wrap: wrap; }
+  .words span { border: 1px solid rgba(20,32,51,.2); padding: 6px 12px; font-size: 13px; }
+
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+  .main { grid-column: 1 / 8; grid-row: span 2; position: relative; min-height: 520px; overflow: hidden; color: #fff; }
+  .main::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,18,26,0) 40%, rgba(10,18,26,.6)); }
+  .main .cap { position: absolute; z-index: 1; left: 32px; right: 32px; bottom: 32px; }
+  .main .cap h3 { font-family: var(--t); font-weight: var(--tw); font-size: clamp(30px, 3vw, 46px); line-height: 1.05; color: #fff; }
+  .main .cap p { color: rgba(255,255,255,.88); margin-top: 10px; font-weight: 300; }
+  .glass { position: absolute; z-index: 1; top: 28px; right: 28px; width: 230px; padding: 18px 20px; background: rgba(14,24,34,.3); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .glass small { display: block; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+  .glass strong { display: block; font-family: var(--b); font-weight: 400; font-size: 22px; color: #fff; margin-top: 4px; }
+  .type { grid-column: 8 / 13; background: #fff; padding: 28px; border: 1px solid rgba(20,32,51,.1); }
+  .type .aa { font-family: var(--t); font-weight: var(--tw); font-size: 96px; line-height: 1; }
+  .type .fonts { margin-top: 14px; font-size: 14px; color: var(--muted); }
+  .type .sample { font-family: var(--t); font-weight: var(--tw); font-size: 30px; line-height: 1.1; margin-top: 20px; }
+  .type .sample em { font-style: normal; color: var(--hl); }
+  .type .body { margin-top: 12px; font-size: 15px; font-weight: 300; color: var(--muted); }
+  .pal { grid-column: 8 / 13; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-content: start; }
+  .sw { aspect-ratio: 1 / 1.25; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; font-size: 11px; border: 1px solid rgba(20,32,51,.1); }
+  .sw span { font-size: 11px; }
+  .dark span { color: #fff !important; }
+  .ph { grid-column: span 3; aspect-ratio: 4 / 5; overflow: hidden; }
+  .ui { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 12px; }
+  .btn { display: inline-flex; align-items: center; padding: 15px 26px; font-family: var(--b); font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; border: 1px solid var(--acc); }
+  .btn.solid { background: var(--acc); color: #fff; }
+  .b1 .btn, .b2 .btn { border-radius: 4px; }
+  .lnk { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+  .open { margin-left: auto; font-size: 14px; color: var(--muted); }
+  .open a { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .note { grid-template-columns: 1fr; }
+    .main, .type, .pal { grid-column: 1 / -1; grid-row: auto; }
+    .main { min-height: 420px; }
+    .ph { grid-column: span 6; }
+    .open { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img class="logo" src="bozza-1/img/logo-blue.png" alt="Stella Maris Luxury Apartments">
+  <h1>Mood boards</h1>
+  <div class="note">
+    <div><b>Please note</b>These are design drafts. All photos and videos are placeholders and will be replaced with Stella Maris' own photography and footage. Texts, prices, sizes and other figures are indicative only. What we are presenting is the look and feel: layout, typography, colours and motion.</div>
+    <div><b>Nota</b>Queste sono bozze grafiche. Tutte le foto e i video sono provvisori e saranno sostituiti con le vostre foto e i vostri video. Testi, prezzi, metrature e altri numeri sono indicativi. Quello che presentiamo è la grafica: impaginazione, caratteri, colori e animazioni.</div>
+  </div>
+  <nav class="nav"><a href="#jost">01 · Jost</a><a href="#cormorant">02 · Cormorant</a><a href="#bwdarius">03 · Bw Darius</a><a href="./">All drafts</a></nav>
+</header>
+
+<!-- 01 JOST -->
+<section class="board b1" id="jost">
+  <div class="in">
+    <div class="head">
+      <div><span class="eyebrow">Mood board 01 · Draft 1</span><h2>Clean, bright, architectural.</h2></div>
+      <div class="words"><span>Contemporary</span><span>White lime</span><span>Atlantic blue</span><span>Calm</span></div>
+    </div>
+    <div class="grid">
+      <figure class="main"><img src="bozza-1/img/hero-2.webp" alt="Stella Maris apartments with infinity pool above the ocean">
+        <div class="glass"><small>From</small><strong>€340 / night</strong></div>
+        <div class="cap"><h3>Your terrace. The Atlantic.</h3><p>Wake without an alarm and let the ocean set the pace.</p></div></figure>
+      <div class="type"><div class="aa">Aa</div><p class="fonts">Titles: Jost · Texts: Jost</p><p class="sample">Lanzarote, without the <em>crowds</em>.</p><p class="body">Fifteen apartments, and the whole Atlantic in front of them.</p></div>
+      <div class="pal">
+        <div class="sw" style="background:#f4f6f6"><span>#F4F6F6</span></div>
+        <div class="sw" style="background:#eff6fa"><span>#EFF6FA</span></div>
+        <div class="sw" style="background:#7ab8d6"><span>#7AB8D6</span></div>
+        <div class="sw dark" style="background:#34557a"><span>#34557A</span></div>
+        <div class="sw dark" style="background:#15181b"><span>#15181B</span></div>
+      </div>
+      <figure class="ph"><img src="bozza-1/img/apt-sea.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-1/img/well-1.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-1/img/lz-manrique.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-1/img/hero-3.webp" alt=""></figure>
+      <div class="ui"><span class="btn solid">Check availability</span><span class="btn">View</span><span class="lnk">All apartments →</span><span class="open">See it live: <a href="bozza-1/index.html">Draft 1 · Jost</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 CORMORANT -->
+<section class="board b2" id="cormorant">
+  <div class="in">
+    <div class="head">
+      <div><span class="eyebrow">Mood board 02 · Draft 1</span><h2>Elegant, timeless, serene.</h2></div>
+      <div class="words"><span>Classic serif</span><span>White lime</span><span>Atlantic blue</span><span>Boutique</span></div>
+    </div>
+    <div class="grid">
+      <figure class="main"><img src="bozza-1/img/hero-4.webp" alt="Infinity pool edge meeting the Atlantic horizon">
+        <div class="glass"><small>From</small><strong>€290 / night</strong></div>
+        <div class="cap"><h3>Your terrace. The Atlantic.</h3><p>Wake without an alarm and let the ocean set the pace.</p></div></figure>
+      <div class="type"><div class="aa">Aa</div><p class="fonts">Titles: Cormorant Garamond · Texts: Jost</p><p class="sample">Lanzarote, without the <em>crowds</em>.</p><p class="body">Fifteen apartments, and the whole Atlantic in front of them.</p></div>
+      <div class="pal">
+        <div class="sw" style="background:#fbfcfc"><span>#FBFCFC</span></div>
+        <div class="sw" style="background:#eff6fa"><span>#EFF6FA</span></div>
+        <div class="sw" style="background:#7ab8d6"><span>#7AB8D6</span></div>
+        <div class="sw dark" style="background:#34557a"><span>#34557A</span></div>
+        <div class="sw dark" style="background:#15181b"><span>#15181B</span></div>
+      </div>
+      <figure class="ph"><img src="bozza-1/img/well-3.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-1/img/apt-jacuzzi.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-1/img/well-5.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-1/img/lz-golfo.webp" alt=""></figure>
+      <div class="ui"><span class="btn solid">Check availability</span><span class="btn">View</span><span class="lnk">All apartments →</span><span class="open">See it live: <a href="bozza-1/index-cormorant.html">Draft 1 · Cormorant</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BW DARIUS -->
+<section class="board b3" id="bwdarius">
+  <div class="in">
+    <div class="head">
+      <div><span class="eyebrow">Mood board 03 · Draft 2</span><h2>Cinematic, from dawn to the stars.</h2></div>
+      <div class="words"><span>Storytelling</span><span>Soft sky blue</span><span>Sharp edges</span><span>Night</span></div>
+    </div>
+    <div class="grid">
+      <figure class="main"><img src="bozza-2/img/s1-mattino.webp" alt="Breakfast on a sea-view terrace in the morning">
+        <div class="glass"><small>07:00</small><strong>Morning</strong></div>
+        <div class="cap"><h3>Coffee on your terrace, the sea still silver.</h3><p>No alarm, nowhere you need to be.</p></div></figure>
+      <div class="type"><div class="aa">Aa</div><p class="fonts">Titles: Bw Darius · Texts: General Sans</p><p class="sample">Let the <em>Atlantic</em> set the hours of your day.</p><p class="body">A seafront home with nothing on the agenda.</p></div>
+      <div class="pal">
+        <div class="sw" style="background:#f5f8f9"><span>#F5F8F9</span></div>
+        <div class="sw" style="background:#e9f1f5"><span>#E9F1F5</span></div>
+        <div class="sw" style="background:#7ab8d6"><span>#7AB8D6</span></div>
+        <div class="sw dark" style="background:#142033"><span>#142033</span></div>
+        <div class="sw dark" style="background:#0c1626"><span>#0C1626</span></div>
+      </div>
+      <figure class="ph"><img src="bozza-2/img/s2-piscina.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-2/img/apt-pool.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-2/img/lz-timanfaya.webp" alt=""></figure>
+      <figure class="ph"><img src="bozza-2/img/s4-notte.webp" alt=""></figure>
+      <div class="ui"><span class="btn solid">Check availability</span><span class="btn">View</span><span class="lnk">Start the day ↓</span><span class="open">See it live: <a href="bozza-2/index-bwdarius.html">Draft 2 · Bw Darius</a></span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
