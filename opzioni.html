@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Stella Maris · Le 3 opzioni</title>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  :root {
+    --bg: #f3f6f8; --card: #fff; --ink: #142033; --muted: #5a6577; --line: #e3e9ee;
+    --atl: #34557a; --sky: #7ab8d6; --sky-soft: #eaf4fa;
+    --good: #2e7d5b; --good-soft: #e8f4ee; --bad: #b8483e; --bad-soft: #fbecea;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font: 400 15px/1.5 "General Sans", system-ui, sans-serif; padding: clamp(32px, 5vw, 64px) 16px 56px; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--atl); }
+  h1 { font-size: clamp(30px, 3.4vw, 44px); font-weight: 600; letter-spacing: -.02em; line-height: 1.1; margin-top: 10px; }
+  .sub { margin-top: 10px; color: var(--muted); font-size: 17px; max-width: 70ch; }
+
+  .cols { margin-top: 36px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+  .opt { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(20,32,51,.06); display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; overflow: hidden; }
+  .opt > .total { align-self: stretch; }
+  .opt-head { padding: 22px 22px 18px; border-bottom: 1px solid var(--line); }
+  .num { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 600; font-size: 14px; }
+  .opt h2 { margin-top: 12px; font-size: 22px; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; }
+  .opt .kind { margin-top: 4px; color: var(--muted); font-size: 14px; }
+  .sec { padding: 18px 22px; border-bottom: 1px solid var(--line); }
+  .sec-t { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+
+  /* Flusso: azione → risultato */
+  .flow { display: grid; gap: 6px; }
+  .flow + .flow { margin-top: 14px; }
+  .act, .res { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; font-size: 14px; }
+  .act { background: var(--sky-soft); }
+  .act i { font-size: 18px; color: var(--atl); margin-top: 1px; }
+  .act b { font-weight: 600; }
+  .res { border: 1px dashed #c7d3dc; }
+  .res.good { border-color: #a9d3bd; background: var(--good-soft); color: #1f5a41; }
+  .res.bad { border-color: #e7b6b0; background: var(--bad-soft); color: #8a3027; }
+  .res i { font-size: 18px; margin-top: 1px; }
+  .down { text-align: center; color: #9aa7b4; font-size: 16px; line-height: 1; }
+
+  /* Costi */
+  .costs { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .costs td { padding: 5px 0; vertical-align: top; }
+  .costs td:last-child { text-align: right; white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .costs td:first-child { color: var(--muted); padding-right: 10px; }
+  .costs tr.sub td { padding-top: 10px; font-weight: 600; color: var(--ink); border-top: 1px solid var(--line); }
+  .cm { margin-top: 12px; padding: 12px; border-radius: 10px; background: #f7f9fb; font-size: 14px; }
+  .cm div { display: flex; justify-content: space-between; gap: 10px; }
+  .cm div + div { margin-top: 4px; }
+  .cm span:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .total { padding: 18px 22px; background: var(--ink); color: #fff; }
+  .total small { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+  .total strong { display: block; margin-top: 4px; font-size: 28px; font-weight: 600; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .total em { font-style: normal; font-size: 13px; opacity: .75; }
+
+  .pc { padding: 16px 22px 20px; display: grid; gap: 8px; font-size: 14px; align-content: start; }
+  .pc div { display: flex; gap: 8px; align-items: flex-start; }
+  .pc i { font-size: 16px; margin-top: 2px; }
+  .pc .p i { color: var(--good); }
+  .pc .c i { color: var(--bad); }
+
+  /* Confronto a barre */
+  .compare { margin-top: 28px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .compare h3 { font-size: 18px; font-weight: 600; }
+  .bars { margin-top: 18px; display: grid; gap: 14px; }
+  .bar { display: grid; grid-template-columns: 240px 1fr 130px; gap: 16px; align-items: center; font-size: 14px; }
+  .track { position: relative; height: 14px; background: #eef2f5; border-radius: 7px; }
+  .range { position: absolute; top: 0; bottom: 0; border-radius: 7px; background: linear-gradient(90deg, var(--sky), var(--atl)); }
+  .bar b { font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+  .scale { display: grid; grid-template-columns: 240px 1fr 130px; gap: 16px; font-size: 12px; color: var(--muted); }
+  .scale div { display: flex; justify-content: space-between; }
+
+  .notes { margin-top: 22px; font-size: 13px; color: var(--muted); display: grid; gap: 4px; max-width: 980px; }
+
+  @media (max-width: 1000px) {
+    .cols { grid-template-columns: 1fr; }
+    .bar, .scale { grid-template-columns: 1fr; gap: 6px; }
+    .bar b { text-align: left; }
+    .scale > span, .scale > b { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">Stella Maris · Sito e prenotazioni</span>
+  <h1>Tre modi di gestire sito e prenotazioni</h1>
+  <p class="sub">Come si gestisce il backend e quanto costa all'anno tra sito, strumenti e channel manager. In tutte e tre le opzioni il sito è su un hosting dedicato.</p>
+
+  <div class="cols">
+
+    <!-- 1 -->
+    <article class="opt">
+      <div class="opt-head"><span class="num">1</span><h2>WordPress + MotoPress</h2><p class="kind">Prenotazioni gestite dentro il sito</p></div>
+      <div class="sec">
+        <p class="sec-t">Gestione backend</p>
+        <div class="flow">
+          <div class="act"><i class="ph ph-pencil-simple"></i><span><b>Testi e foto</b> si modificano in WordPress (scrittura di articoli del blog, aggiunta di foto, cambio dei testi, ecc.)</span></div>
+          <div class="down">↓</div>
+          <div class="res"><i class="ph ph-globe"></i><span>il sito si aggiorna</span></div>
+        </div>
+        <div class="flow">
+          <div class="act"><i class="ph ph-tag"></i><span><b>Prezzi</b> si cambiano in WordPress</span></div>
+          <div class="down">↓</div>
+          <div class="res bad"><i class="ph ph-warning"></i><span>e poi a mano su Booking, Airbnb e Vrbo. Le prenotazioni dai portali arrivano con ritardo: rischio di doppia prenotazione</span></div>
+        </div>
+      </div>
+      <div class="sec">
+        <p class="sec-t">Costi annuali</p>
+        <table class="costs">
+          <tr><td>Hosting</td><td>130 €</td></tr>
+          <tr><td>Dominio</td><td>12-20 €</td></tr>
+          <tr><td>Multilingua (WPML o Polylang Pro)</td><td>~99 €</td></tr>
+          <tr><td>Cookie e privacy (Complianz)</td><td>~59 €</td></tr>
+          <tr><td>Campi personalizzati (ACF PRO)</td><td>~50 €</td></tr>
+          <tr class="sub"><td>Sito</td><td>~350-360 €</td></tr>
+        </table>
+        <div class="cm"><div><span>Prenotazioni: MotoPress</span><span>~199 €</span></div></div>
+      </div>
+      <div class="total"><small>Totale annuale</small><strong>~550-600 €</strong><em>circa 45-50 € al mese</em></div>
+      <div class="pc">
+        <div class="p"><i class="ph ph-check-circle"></i><span>Il costo più basso, si paga direttamente sul sito</span></div>
+        <div class="c"><i class="ph ph-x-circle"></i><span>Prezzi da aggiornare a mano su ogni portale, per 15 appartamenti</span></div>
+      </div>
+    </article>
+
+    <!-- 2 -->
+    <article class="opt">
+      <div class="opt-head"><span class="num">2</span><h2>WordPress + Smoobu o Lodgify</h2><p class="kind">Sito WordPress, prenotazioni nel channel manager</p></div>
+      <div class="sec">
+        <p class="sec-t">Gestione backend</p>
+        <div class="flow">
+          <div class="act"><i class="ph ph-pencil-simple"></i><span><b>Testi e foto</b> si modificano in WordPress (scrittura di articoli del blog, aggiunta di foto, cambio dei testi, ecc.)</span></div>
+          <div class="down">↓</div>
+          <div class="res"><i class="ph ph-globe"></i><span>il sito si aggiorna</span></div>
+        </div>
+        <div class="flow">
+          <div class="act"><i class="ph ph-tag"></i><span><b>Prezzi e calendario</b> si cambiano una volta sola nel channel manager</span></div>
+          <div class="down">↓</div>
+          <div class="res good"><i class="ph ph-arrows-clockwise"></i><span>si aggiornano da soli su sito, Booking, Airbnb e Vrbo. Si paga con Stripe o PayPal</span></div>
+        </div>
+      </div>
+      <div class="sec">
+        <p class="sec-t">Costi annuali</p>
+        <table class="costs">
+          <tr><td>Hosting</td><td>130 €</td></tr>
+          <tr><td>Dominio</td><td>12-20 €</td></tr>
+          <tr><td>Multilingua (WPML o Polylang Pro)</td><td>~99 €</td></tr>
+          <tr><td>Cookie e privacy (Complianz)</td><td>~59 €</td></tr>
+          <tr><td>Campi personalizzati (ACF PRO)</td><td>~50 €</td></tr>
+          <tr class="sub"><td>Sito</td><td>~350-360 €</td></tr>
+        </table>
+        <div class="cm"><div><span>Smoobu, 15 appartamenti</span><span>~150-170 €/mese</span></div><div><span>Lodgify, 15 appartamenti</span><span>~200-220 €/mese</span></div></div>
+      </div>
+      <div class="total"><small>Totale annuale</small><strong>~2.150-3.000 €</strong><em>sito + channel manager (1.800-2.640 €)</em></div>
+      <div class="pc">
+        <div class="p"><i class="ph ph-check-circle"></i><span>Tutto sincronizzato, pagine nuove in autonomia</span></div>
+        <div class="c"><i class="ph ph-x-circle"></i><span>WordPress e plugin da tenere aggiornati</span></div>
+      </div>
+    </article>
+
+    <!-- 3 -->
+    <article class="opt">
+      <div class="opt-head"><span class="num">3</span><h2>Astro + Tina + Smoobu o Lodgify</h2><p class="kind">Sito leggero e veloce, prenotazioni nel channel manager</p></div>
+      <div class="sec">
+        <p class="sec-t">Gestione backend</p>
+        <div class="flow">
+          <div class="act"><i class="ph ph-pencil-simple"></i><span><b>Testi e foto</b> si modificano con Tina, un editor semplice (scrittura di articoli del blog, aggiunta di foto, cambio dei testi, ecc.)</span></div>
+          <div class="down">↓</div>
+          <div class="res"><i class="ph ph-globe"></i><span>il sito si aggiorna da solo in pochi minuti</span></div>
+        </div>
+        <div class="flow">
+          <div class="act"><i class="ph ph-tag"></i><span><b>Prezzi e calendario</b> si cambiano una volta sola nel channel manager</span></div>
+          <div class="down">↓</div>
+          <div class="res good"><i class="ph ph-arrows-clockwise"></i><span>si aggiornano da soli su sito, Booking, Airbnb e Vrbo. Si paga con Stripe o PayPal</span></div>
+        </div>
+      </div>
+      <div class="sec">
+        <p class="sec-t">Costi annuali</p>
+        <table class="costs">
+          <tr><td>Hosting</td><td>130 €</td></tr>
+          <tr><td>Dominio</td><td>12-20 €</td></tr>
+          <tr><td>Multilingua</td><td>incluso</td></tr>
+          <tr><td>Banner cookie e privacy</td><td>0-60 €</td></tr>
+          <tr><td>Editor Tina (fino a 2 utenti)</td><td>gratis</td></tr>
+          <tr class="sub"><td>Sito</td><td>~140-210 €</td></tr>
+        </table>
+        <div class="cm"><div><span>Smoobu, 15 appartamenti</span><span>~150-170 €/mese</span></div><div><span>Lodgify, 15 appartamenti</span><span>~200-220 €/mese</span></div></div>
+      </div>
+      <div class="total"><small>Totale annuale</small><strong>~1.950-2.850 €</strong><em>sito + channel manager (1.800-2.640 €)</em></div>
+      <div class="pc">
+        <div class="p"><i class="ph ph-check-circle"></i><span>Più veloce e sicuro, nessun plugin da aggiornare né licenze</span></div>
+        <div class="c"><i class="ph ph-x-circle"></i><span>Le sezioni nuove le aggiunge l'agenzia</span></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Confronto -->
+  <section class="compare">
+    <h3>Costo annuale a confronto</h3>
+    <div class="bars">
+      <div class="bar"><span>1 · WordPress + MotoPress</span><div class="track"><div class="range" style="left:18.3%;width:1.7%"></div></div><b>~550-600 €</b></div>
+      <div class="bar"><span>2 · WordPress + channel manager</span><div class="track"><div class="range" style="left:71.7%;width:28.3%"></div></div><b>~2.150-3.000 €</b></div>
+      <div class="bar"><span>3 · Astro + Tina + channel manager</span><div class="track"><div class="range" style="left:65%;width:30%"></div></div><b>~1.950-2.850 €</b></div>
+    </div>
+    <div class="scale" style="margin-top:8px"><span></span><div><span>0 €</span><span>1.000 €</span><span>2.000 €</span><span>3.000 €</span></div><b></b></div>
+  </section>
+
+  <div class="notes">
+    <p>Costi indicativi, IVA esclusa. Hosting, dominio, plugin, MotoPress e Lodgify secondo il preventivo; Smoobu secondo il listino ufficiale (35 € al mese + da 9,60 € per ogni appartamento in più). Da confermare con i fornitori.</p>
+    <p>Non sono compresi: commissioni dei portali (Booking, Airbnb, Vrbo) e dei pagamenti (Stripe, PayPal), uguali in tutte le opzioni; newsletter (gratuita fino a 500 contatti); servizio di manutenzione dell'agenzia, quotato a parte.</p>
+  </div>
+</div>
+</body>
+</html>
