@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Villa Stella Maris · Mood boards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,400&display=swap" rel="stylesheet">
+<style>
+  :root { --gutter: clamp(16px, 5vw, 72px); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #f5f8f9; color: #142033; font: 400 16px/1.6 "General Sans", system-ui, sans-serif; overflow-x: hidden; }
+  img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .top { padding: clamp(48px, 8vw, 100px) var(--gutter) 40px; max-width: 1400px; margin: 0 auto; }
+  .top img.logo { width: 150px; height: auto; }
+  .top h1 { font: 400 clamp(32px, 4vw, 52px)/1.1 Georgia, serif; margin-top: 32px; }
+  .note { margin-top: 32px; padding: 24px 28px; border: 1px solid rgba(20,32,51,.16); background: #fff; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; font-size: 15px; color: #445064; }
+  .note b { display: block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: #142033; margin-bottom: 8px; }
+  .nav { margin-top: 28px; display: flex; gap: 24px; flex-wrap: wrap; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+  .nav a { color: inherit; border-bottom: 1px solid currentColor; text-decoration: none; padding-bottom: 3px; }
+
+  /* Ogni tavola definisce i suoi font e colori */
+  .board { padding: clamp(64px, 8vw, 110px) var(--gutter); border-top: 1px solid rgba(20,32,51,.12); }
+  .board .in { max-width: 1400px; margin: 0 auto; }
+  .b1 { --t: "Gambetta", serif; --tw: 300; --adj: none; --b: "General Sans", sans-serif; --bg: #f5f8f9; --ink: #142033; --muted: #556173; --acc: #142033; --hl: #7ab8d6; background: var(--bg); }
+  .b2 { --t: "Cormorant Garamond", serif; --tw: 400; --adj: .46; --b: "General Sans", sans-serif; --bg: #fbfcfc; --ink: #142033; --muted: #556173; --acc: #142033; --hl: #7ab8d6; background: var(--bg); }
+  .board, .board p, .board span, .board small { font-family: var(--b); color: var(--ink); }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted) !important; }
+  .head h2, .main .cap h3, .type .aa, .type .sample { font-family: var(--t); font-weight: var(--tw); font-size-adjust: var(--adj); }
+  .head h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1.05; margin-top: 14px; }
+  .words { display: flex; gap: 8px; flex-wrap: wrap; }
+  .words span { border: 1px solid rgba(20,32,51,.2); padding: 6px 12px; font-size: 13px; }
+
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+  .main { grid-column: 1 / 8; grid-row: span 2; position: relative; min-height: 520px; overflow: hidden; color: #fff; }
+  .main::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,18,26,0) 40%, rgba(10,18,26,.6)); }
+  .main .cap { position: absolute; z-index: 1; left: 32px; right: 32px; bottom: 32px; }
+  .main .cap h3 { font-size: clamp(30px, 3vw, 46px); line-height: 1.05; color: #fff; }
+  .main .cap h3 em { font-style: normal; color: var(--hl); }
+  .main .cap p { color: rgba(255,255,255,.88); margin-top: 10px; font-weight: 300; }
+  .glass { position: absolute; z-index: 1; top: 28px; right: 28px; width: 230px; padding: 18px 20px; background: rgba(14,24,34,.3); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .glass small { display: block; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+  .glass strong { display: block; font-family: var(--b); font-weight: 400; font-size: 22px; color: #fff; margin-top: 4px; }
+  .type { grid-column: 8 / 13; background: #fff; padding: 28px; border: 1px solid rgba(20,32,51,.1); }
+  .type .aa { font-size: 96px; line-height: 1; }
+  .type .fonts { margin-top: 14px; font-size: 14px; color: var(--muted); }
+  .type .sample { font-size: 30px; line-height: 1.1; margin-top: 20px; }
+  .type .sample em { font-style: normal; color: var(--hl); }
+  .type .body { margin-top: 12px; font-size: 15px; font-weight: 300; color: var(--muted); }
+  .pal { grid-column: 8 / 13; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; align-content: start; }
+  .sw { aspect-ratio: 1 / 1.25; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; font-size: 11px; border: 1px solid rgba(20,32,51,.1); }
+  .sw span { font-size: 11px; }
+  .dark span { color: #fff !important; }
+  .ph { grid-column: span 3; aspect-ratio: 4 / 5; overflow: hidden; }
+  .ui { grid-column: 1 / -1; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 12px; }
+  .btn { display: inline-flex; align-items: center; padding: 15px 26px; font-family: var(--b); font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; border: 1px solid var(--acc); }
+  .btn.solid { background: var(--acc); color: #fff !important; }
+  .lnk { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+  .open { margin-left: auto; font-size: 14px; color: var(--muted); }
+  .open a { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .note { grid-template-columns: 1fr; }
+    .main, .type, .pal { grid-column: 1 / -1; grid-row: auto; }
+    .main { min-height: 420px; }
+    .ph { grid-column: span 6; }
+    .open { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img class="logo" src="villa-stella-maris/img/logo-blue-villa.png" alt="Villa Stella Maris">
+  <h1>Mood boards</h1>
+  <div class="note">
+    <div><b>Please note</b>These are design drafts. All photos and videos are placeholders and will be replaced with Stella Maris' own photography and footage. Texts, prices, sizes and other figures are indicative only. What we are presenting is the look and feel: layout, typography, colours and motion.</div>
+    <div><b>Nota</b>Queste sono bozze grafiche. Tutte le foto e i video sono provvisori e saranno sostituiti con le vostre foto e i vostri video. Testi, prezzi, metrature e altri numeri sono indicativi. Quello che presentiamo è la grafica: impaginazione, caratteri, colori e animazioni.</div>
+  </div>
+  <nav class="nav"><a href="#gambetta">01 · Gambetta</a><a href="#cormorant">02 · Cormorant</a><a href="./">All drafts</a></nav>
+</header>
+
+<!-- 01 GAMBETTA -->
+<section class="board b1" id="gambetta">
+  <div class="in">
+    <div class="head">
+      <div><span class="eyebrow">Mood board 01 · Gambetta</span><h2>Light, contemporary, unhurried.</h2></div>
+      <div class="words"><span>Long stays</span><span>White lime</span><span>Atlantic blue</span><span>Exclusive</span></div>
+    </div>
+    <div class="grid">
+      <figure class="main"><img src="villa-stella-maris/img/hero-2.webp" alt="Villa Stella Maris on the seafront of Puerto Calero, infinity pool at sunrise">
+        <div class="glass"><small>Your stay</small><strong>1 to 12 months</strong></div>
+        <div class="cap"><h3>Same life. A better <em>horizon</em>.</h3><p>Live by the ocean. Work, create, breathe.</p></div></figure>
+      <div class="type"><div class="aa">Aa</div><p class="fonts">Titles: Gambetta · Texts: General Sans</p><p class="sample">Lanzarote has hotels for a week. This is a place to <em>stay</em>.</p><p class="body">Fourteen private residences, cared for like a five-star hotel.</p></div>
+      <div class="pal">
+        <div class="sw" style="background:#f5f8f9"><span>#F5F8F9</span></div>
+        <div class="sw" style="background:#e9f1f5"><span>#E9F1F5</span></div>
+        <div class="sw" style="background:#7ab8d6"><span>#7AB8D6</span></div>
+        <div class="sw dark" style="background:#142033"><span>#142033</span></div>
+        <div class="sw dark" style="background:#0c1626"><span>#0C1626</span></div>
+      </div>
+      <figure class="ph"><img src="villa-stella-maris/img/s1b-lavoro-3-specchio.webp" alt="" style="object-position:75% 50%"></figure>
+      <figure class="ph"><img src="villa-stella-maris/img/apt-sea.webp" alt=""></figure>
+      <figure class="ph"><img src="villa-stella-maris/img/who-couple.webp" alt=""></figure>
+      <figure class="ph"><img src="villa-stella-maris/img/lz-timanfaya.webp" alt=""></figure>
+      <div class="ui"><span class="btn solid">Request availability</span><span class="btn">Residences</span><span class="lnk">A day here ↓</span><span class="open">See it live: <a href="villa-stella-maris/">Villa Stella Maris · Gambetta</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 CORMORANT -->
+<section class="board b2" id="cormorant">
+  <div class="in">
+    <div class="head">
+      <div><span class="eyebrow">Mood board 02 · Cormorant</span><h2>Classic, refined, timeless.</h2></div>
+      <div class="words"><span>Classic serif</span><span>White lime</span><span>Atlantic blue</span><span>Boutique</span></div>
+    </div>
+    <div class="grid">
+      <figure class="main"><img src="villa-stella-maris/img/hero-4.webp" alt="Infinity pool facing the Atlantic at sunset">
+        <div class="glass"><small>Residences</small><strong>Only fourteen</strong></div>
+        <div class="cap"><h3>Everything ready. Nothing to <em>organise</em>.</h3><p>You arrive, unpack and start living.</p></div></figure>
+      <div class="type"><div class="aa">Aa</div><p class="fonts">Titles: Cormorant Garamond · Texts: General Sans</p><p class="sample">Your office for the season, facing the <em>Atlantic</em>.</p><p class="body">High-speed Starlink and the same time zone as London.</p></div>
+      <div class="pal">
+        <div class="sw" style="background:#fbfcfc"><span>#FBFCFC</span></div>
+        <div class="sw" style="background:#e9f1f5"><span>#E9F1F5</span></div>
+        <div class="sw" style="background:#7ab8d6"><span>#7AB8D6</span></div>
+        <div class="sw dark" style="background:#142033"><span>#142033</span></div>
+        <div class="sw dark" style="background:#0c1626"><span>#0C1626</span></div>
+      </div>
+      <figure class="ph"><img src="villa-stella-maris/img/s1-mattino.webp" alt=""></figure>
+      <figure class="ph"><img src="villa-stella-maris/img/apt-pool.webp" alt=""></figure>
+      <figure class="ph"><img src="villa-stella-maris/img/s2-piscina.webp" alt=""></figure>
+      <figure class="ph"><img src="villa-stella-maris/img/lz-golfo.webp" alt=""></figure>
+      <div class="ui"><span class="btn solid">Request availability</span><span class="btn">Residences</span><span class="lnk">A day here ↓</span><span class="open">See it live: <a href="villa-stella-maris/cormorant.html">Villa Stella Maris · Cormorant</a></span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
