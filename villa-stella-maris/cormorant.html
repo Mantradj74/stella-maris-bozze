@@ -116,6 +116,7 @@
   .why .label { color: inherit; opacity: .7; }
   .why h2 { font-size: clamp(34px, 3.5vw, 56px); line-height: 1.08; max-width: 30ch; }
   .why .lead { margin-top: 30px; font-family: var(--serif); font-weight: 300; font-size: clamp(21px, 1.7vw, 27px); line-height: 1.5; max-width: 56ch; }
+  @media (min-width: 1024px) { .why .lead { font-size: clamp(19px, 1.3vw, 22px); } }  /* su pc più piccolo (richiesta di Marco 02/11) */
 
   /* Card dei punti di forza: grafica e animazione della bozza 1 */
   .feats { list-style: none; margin-top: clamp(64px, 8vw, 110px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
