@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>[BOZZA temporada 4 · Bw Darius] Villa Stella Maris | Long-Term Villa Rental in Lanzarote</title>
+<meta name="description" content="Luxury long-term villa rental in Puerto Calero, Lanzarote: private residences for 1 to 12 months with hotel-level care, adults only, Starlink.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  /* PROVA LOCALE: Bw Darius (Branding with Type) senza licenza, file in _font-test/ escluso da git. NON pubblicare. */
+  @font-face { font-family: "Bw Darius"; src: url(_font-test/BwDarius-Light.woff2) format("woff2"); font-weight: 300; font-display: swap; }
+  @font-face { font-family: "Bw Darius"; src: url(_font-test/BwDarius-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+</style>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+<link rel="preload" as="image" href="img/hero-2.webp">
+<script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');</script>
+<style>
+  /* Bozza 2 "Una giornata a Stella Maris", versione TEMPORADA 4 (02/11/2026: card "Only at", "Your stay includes", esclusività, risposte rapide), derivata dalla TEMPORADA 3, dopo il feedback di Marco sulla 2:
+     hero con "Luxury" nell'etichetta e due frasi a macchina da scrivere, posizionamento A nella sezione Why,
+     nuova prima scena, nuova foto del lavoro, foto a tema nei profili con le persone in grassetto, profili dopo le residenze.
+     Versioni precedenti intatte in index-temporada.html e index-temporada-2.html. */
+  :root {
+    --paper: #f5f8f9;      /* bianco calce freddo */
+    --mist: #e9f1f5;       /* azzurro chiarissimo per fondi alternati */
+    --ink: #142033;        /* blu notte, testi */
+    --muted: #556173;
+    --line: rgba(20, 32, 51, .14);
+    --sky: #7ab8d6;        /* azzurrino, solo parole evidenziate e filetti */
+    --night: #0c1626;
+    --serif: "Bw Darius", Georgia, serif;
+    --sans: "General Sans", system-ui, sans-serif;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+    --gutter: clamp(20px, 5vw, 80px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--paper); color: var(--ink); font: 400 17px/1.65 var(--sans); overflow-x: hidden; }
+  img, video { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select { font: inherit; color: inherit; }
+  h1, h2, h3 { font-family: var(--serif); font-optical-sizing: auto; font-weight: 400; letter-spacing: -.01em; }
+  em.hl { font-style: normal; color: var(--sky); }
+  .label { display: block; font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+  .wrap { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* Pulsanti: angoli netti ovunque */
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; border: 1px solid currentColor; transition: background .4s var(--ease), color .4s var(--ease), transform .2s; cursor: pointer; background: none; }
+  .btn:active { transform: translateY(1px); }
+  .btn-solid { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-solid:hover { background: #22324d; }
+  .btn-light { color: #fff; }
+  .btn-light:hover { background: #fff; color: var(--ink); }
+  .link { font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; display: inline-flex; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid currentColor; }
+
+  /* Header */
+  .hdr { position: fixed; inset: 0 0 auto 0; z-index: 50; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); color: #fff; transition: background .5s var(--ease), color .5s var(--ease), box-shadow .5s; }
+  .hdr .logo { position: relative; width: 150px; height: 62px; }
+  .hdr .logo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .5s; }
+  .hdr .logo .blue { opacity: 0; }
+  .hdr nav { display: flex; align-items: center; gap: 40px; font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+  .hdr nav a:not(.btn) { opacity: .9; }
+  .hdr nav a:not(.btn):hover { opacity: 1; }
+  .hdr .btn { padding: 12px 20px; }
+  .hdr.solid { background: rgba(245, 248, 249, .94); color: var(--ink); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .hdr.solid .logo .white { opacity: 0; }
+  .hdr.solid .logo .blue { opacity: 1; }
+  .hdr.solid .btn:hover { background: var(--ink); color: #fff; }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100dvh; display: flex; align-items: flex-end; color: #fff; overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; }
+  .hero .bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; transform: scale(1.08); }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,22,38,.35) 0%, rgba(12,22,38,0) 30%, rgba(12,22,38,.15) 55%, rgba(12,22,38,.62) 100%); }
+  .hero .in { position: relative; z-index: 1; width: 100%; padding: 0 var(--gutter) clamp(48px, 9vh, 96px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: end; }
+  .hero .label { color: rgba(255,255,255,.85); font-family: var(--sans); line-height: 1.6; }
+  .hero .slogan { font-family: var(--serif); letter-spacing: -.01em; font-weight: 300; font-size: clamp(40px, 5vw, 84px); line-height: 1.04; max-width: 21ch; }
+  .hero .kicker { margin-top: 18px; font: 300 clamp(21px, 1.8vw, 30px)/1.3 var(--serif); max-width: none; }
+  .hero p { margin-top: 22px; font-size: clamp(16px, 1.2vw, 19px); font-weight: 300; max-width: 46ch; }
+  /* Macchina da scrivere "morbida": le lettere compaiono una dopo l'altra con una breve dissolvenza, cursore sottile che poi sparisce */
+  .js .hero .slogan:not(.ready), .js .hero .kicker:not(.ready) { opacity: 0; }
+  .tw-w { white-space: nowrap; }
+  .tw-c { opacity: 0; transition: opacity .28s ease-out; }
+  .tw-c.on { opacity: 1; }
+  .caret { display: inline-block; width: 2px; height: .82em; margin-left: .06em; vertical-align: -.06em; background: currentColor; opacity: .85; transition: opacity .6s; }
+  .caret.off { opacity: 0; }
+  .hero .ctas { display: flex; flex-direction: column; align-items: flex-end; gap: 22px; }
+
+  /* Racconto: 5 scene fissate sullo schermo mentre si scorre */
+  .day { position: relative; height: 100dvh; overflow: hidden; color: #fff; background: var(--night); }
+  .sc { position: absolute; inset: 0; opacity: 0; }
+  .sc:first-child { opacity: 1; }
+  .sc .media { position: absolute; inset: 0; overflow: hidden; }
+  .sc .media img, .sc .media video { width: 100%; height: 100%; object-fit: cover; }
+  .sc .tint { position: absolute; inset: 0; }
+  .sc .tint::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 180px; background: linear-gradient(180deg, rgba(12,22,38,.45), rgba(12,22,38,0)); }
+  .sc1 .tint { background: linear-gradient(180deg, rgba(255,236,214,.10) 0%, rgba(12,22,38,.05) 40%, rgba(12,22,38,.55) 100%); }
+  .sc2 .tint { background: linear-gradient(180deg, rgba(12,22,38,0) 35%, rgba(12,22,38,.62) 100%); }
+  .sc2 .media img { object-position: 80% 50%; }
+  .sc3 .tint { background: linear-gradient(180deg, rgba(12,22,38,0) 45%, rgba(12,22,38,.5) 100%); }
+  .sc4 .tint { background: linear-gradient(180deg, rgba(60,24,10,.05) 0%, rgba(12,22,38,.6) 100%); }
+  .sc5 .tint { background: linear-gradient(180deg, rgba(12,22,38,.25) 0%, rgba(12,22,38,.7) 100%); }
+  .sc5 canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .cap { position: absolute; left: var(--gutter); bottom: clamp(120px, 18vh, 190px); max-width: min(940px, 62vw); }
+  .cap h2 { font-weight: 300; font-size: clamp(38px, 4.6vw, 74px); line-height: 1.05; }
+  .cap p { margin-top: 20px; font-size: clamp(16px, 1.2vw, 19px); font-weight: 300; max-width: 46ch; opacity: .92; }
+  .cap .when { display: none; font-size: 13px; letter-spacing: .3em; margin-bottom: 14px; }
+  .clock { position: absolute; z-index: 3; right: var(--gutter); bottom: clamp(48px, 7vh, 72px); display: flex; flex-direction: column; align-items: flex-end; gap: 16px; pointer-events: none; }
+  .clock .time { font: 300 clamp(44px, 4.4vw, 72px)/1 var(--serif); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+  .dayline { position: relative; width: clamp(300px, 30vw, 440px); display: grid; grid-template-columns: repeat(5, 1fr); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+  .dayline span { padding-top: 14px; opacity: .55; transition: opacity .4s; }
+  .dayline span.on { opacity: 1; }
+  .dayline::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(255,255,255,.3); }
+  .dayline i { position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: #fff; transform-origin: left; transform: scaleX(0); }
+
+  /* Posizionamento: il fondo passa dal blu notte al bianco */
+  .why { background: var(--night); color: #fff; padding: clamp(110px, 16vh, 180px) 0 clamp(100px, 14vh, 160px); }
+  .why .label { color: inherit; opacity: .7; }
+  .why h2 { font-size: clamp(34px, 3.5vw, 56px); line-height: 1.08; max-width: 30ch; }
+  .why .lead { margin-top: 30px; font-family: var(--serif); font-weight: 300; font-size: clamp(21px, 1.7vw, 27px); line-height: 1.5; max-width: 56ch; }
+
+  /* Card dei punti di forza: grafica e animazione della bozza 1 */
+  .feats { list-style: none; margin-top: clamp(64px, 8vw, 110px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .feat { position: relative; overflow: hidden; background: #fff; color: var(--ink); border: 1px solid var(--line); padding: 30px 26px 32px; transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s; }
+  .feat:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(20,32,51,.08); border-color: #d3e3ec; }
+  .feat__line { position: absolute; left: 26px; right: 26px; top: 0; height: 2px; background: var(--sky); transform: scaleX(.18); transform-origin: left; transition: transform .6s var(--ease); }
+  .feat:hover .feat__line { transform: scaleX(1); }
+  .feat__icon { position: relative; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--mist); color: var(--ink); font-size: 24px; transition: background .5s var(--ease), color .5s var(--ease), transform .6s var(--ease); }
+  .feat__ring { position: absolute; inset: -1px; border-radius: 50%; border: 1px solid var(--sky); opacity: 0; pointer-events: none; }
+  .feat:hover .feat__icon { background: var(--ink); color: #fff; transform: rotate(-8deg); }
+  .feat__shine { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.75) 50%, transparent 65%); transform: translateX(-120%); }
+  .feat h3 { font-size: clamp(23px, 1.9vw, 28px); margin-top: 26px; line-height: 1.12; }
+  .feat p { margin-top: 10px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+  /* Per chi è: fondo azzurro, foto, numeri: si stacca dalle sezioni bianche sopra e sotto */
+  .who { background: var(--mist); padding: clamp(100px, 14vh, 160px) 0; position: relative; }
+  .who::before { content: ""; position: absolute; left: var(--gutter); top: 0; width: 1px; height: clamp(50px, 8vh, 90px); background: var(--sky); }
+  .who .intro { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 100px); align-items: end; }
+  .who h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 14ch; }
+  .who .lead { color: var(--muted); max-width: 52ch; }
+  .who .lead strong { font-weight: 500; color: var(--ink); }
+  .profiles { margin-top: clamp(56px, 8vh, 84px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .profile { background: var(--paper); display: flex; flex-direction: column; }
+  .profile .ph { aspect-ratio: 4 / 3; overflow: hidden; }
+  .profile .ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 1.4s var(--ease); }
+  .profile:hover .ph img { transform: scale(1.1); }
+  .profile .tx { padding: 28px 28px 34px; }
+  .profile .n { font: 300 15px/1 var(--serif); color: var(--sky); letter-spacing: .1em; }
+  .profile h3 { margin: 14px 0 10px; font-size: 26px; line-height: 1.2; }
+  .profile p { font-size: 16px; color: var(--muted); }
+  .profile p strong, .who .also strong { font-weight: 500; color: var(--ink); }
+  .who .also { margin-top: clamp(48px, 7vh, 72px); padding-left: 24px; border-left: 2px solid var(--sky); font-family: var(--serif); font-weight: 300; font-size: clamp(19px, 1.5vw, 24px); line-height: 1.5; max-width: 66ch; }
+
+  /* Residenze: pan orizzontale della bozza 1 */
+  .apts { background: var(--paper); }
+  .apts__head { padding-top: clamp(100px, 14vh, 160px); padding-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+  .apts h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 19ch; }
+  .apts__lead { margin-top: 20px; max-width: 50ch; color: var(--muted); }
+  .apts__pin { overflow: hidden; }
+  .apts__track { display: flex; gap: 24px; padding: 0 var(--gutter) clamp(80px, 9vw, 120px); width: max-content; }
+  .apt { position: relative; width: min(78vw, 1180px); height: min(calc(100vh - 150px), 760px); overflow: hidden; flex: none; background: var(--night); color: #fff; }
+  .apt > img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); }
+  .apt::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12,22,38,.55), rgba(12,22,38,.05) 55%, rgba(12,22,38,.2)); pointer-events: none; }
+  .apt__title { position: absolute; z-index: 2; left: clamp(24px, 4vw, 56px); bottom: clamp(24px, 4vw, 56px); width: min(440px, 46%); }
+  .apt__title .n { font: 300 15px/1 var(--serif); letter-spacing: .1em; opacity: .8; }
+  .apt__title h3 { margin-top: 14px; font-weight: 300; font-size: clamp(36px, 4vw, 64px); line-height: 1.04; max-width: 9ch; }
+  .apt__title p { margin-top: 14px; font-size: 16px; font-weight: 300; color: rgba(255,255,255,.88); max-width: 34ch; }
+  .apt .card { position: absolute; z-index: 2; right: clamp(20px, 3vw, 40px); bottom: clamp(20px, 3vw, 40px); width: min(370px, 40%); background: rgba(14,24,34,.34); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%); box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 30px 80px rgba(8,16,24,.35); }
+  .spec { display: grid; grid-template-columns: 1fr 1fr; }
+  .spec div { padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .spec div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.18); }
+  .spec span { display: block; font-size: 10.5px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; opacity: .72; margin-bottom: 6px; }
+  .spec strong { font: 400 19px/1.2 var(--serif); }
+  .apt .bar { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .apt .bar small { font-size: 13px; line-height: 1.4; opacity: .85; }
+  .apt .bar .btn { padding: 12px 18px; }
+
+  /* Cosa è incluso */
+  .includes { background: var(--night); color: #fff; padding: clamp(100px, 14vh, 160px) 0; }
+  .includes .grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 100px); align-items: start; }
+  .includes .grid > div:first-child { position: sticky; top: 120px; }
+  .includes .label { color: rgba(255,255,255,.7); }
+  .includes h2 { font-size: clamp(32px, 3.1vw, 50px); line-height: 1.08; }
+  .includes .lead { margin-top: 22px; color: rgba(255,255,255,.78); max-width: 40ch; }
+  .includes ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.16); }
+  .includes li { display: flex; gap: 18px; padding: 26px 24px 26px 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+  .includes li:nth-child(even) { padding-left: 24px; border-left: 1px solid rgba(255,255,255,.16); }
+  .includes li i { flex: none; font-size: 28px; color: var(--sky); margin-top: 2px; }
+  .includes h3 { font-size: 21px; line-height: 1.2; }
+  .includes li p { margin-top: 6px; font-size: 15px; color: rgba(255,255,255,.72); }
+  @media (max-width: 700px) { .includes ul { grid-template-columns: 1fr; } .includes li:nth-child(even) { padding-left: 0; border-left: 0; } }
+  .assure { grid-column: 1 / -1; list-style: none; margin-top: 8px; display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 13px; color: var(--muted); }
+  .assure li { display: flex; align-items: center; gap: 8px; }
+  .assure i { font-size: 18px; color: var(--sky); }
+
+  /* Energia */
+  .energy { padding: clamp(110px, 15vh, 170px) 0; text-align: center; border-top: 1px solid var(--line); }
+  .energy h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; }
+  .energy .lead { margin: 24px auto 0; max-width: 54ch; color: var(--muted); }
+  .energy ul { list-style: none; margin: clamp(56px, 8vh, 80px) auto 0; max-width: 1080px; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .energy li { padding: 8px 32px; border-left: 1px solid var(--line); }
+  .energy li:first-child { border-left: 0; }
+  .energy li i { font-size: 34px; color: var(--sky); }
+  .energy li h3 { margin: 16px 0 6px; font-size: 22px; }
+  .energy li p { font-size: 15px; color: var(--muted); }
+
+  /* Lanzarote: strisce che si allargano */
+  .island { background: var(--mist); padding: clamp(100px, 14vh, 160px) 0; }
+  .island h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 18ch; }
+  .island .lead { margin-top: 20px; max-width: 58ch; color: var(--muted); }
+  .strips { margin-top: 56px; display: flex; gap: 10px; height: min(70vh, 640px); min-height: 460px; }
+  .strip { position: relative; flex: 1; overflow: hidden; cursor: pointer; transition: flex 1s var(--ease); color: #fff; border: 0; padding: 0; text-align: left; background: var(--ink); }
+  .strip.on { flex: 4.2; }
+  .strip img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease), opacity .6s; opacity: .85; }
+  .strip.on img { opacity: 1; transform: scale(1.03); }
+  .strip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,22,38,0) 45%, rgba(12,22,38,.65) 100%); }
+  .strip .t { position: absolute; z-index: 1; left: 24px; right: 24px; bottom: 24px; }
+  .strip h3 { font-size: 26px; font-weight: 400; white-space: nowrap; }
+  .strip p { margin-top: 6px; font-size: 15px; font-weight: 300; max-width: 32ch; opacity: 0; transform: translateY(8px); transition: opacity .6s .15s var(--ease), transform .6s .15s var(--ease); }
+  .strip.on p { opacity: 1; transform: none; }
+  .strip:not(.on) h3 { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 22px; }
+
+  /* Puerto Calero */
+  .place { position: relative; }
+  .place .vid { position: relative; height: min(78vh, 760px); min-height: 460px; overflow: hidden; }
+  .place .vid video { width: 100%; height: 100%; object-fit: cover; }
+  .place .card { position: relative; z-index: 2; margin: -150px var(--gutter) 0 auto; width: min(760px, calc(100% - 2 * var(--gutter))); background: var(--paper); padding: clamp(36px, 4vw, 60px); }
+  .place h2 { font-size: clamp(30px, 2.8vw, 40px); line-height: 1.08; }
+  .place .lead { margin-top: 18px; color: var(--muted); max-width: 54ch; }
+  .place .link { margin-top: 34px; }
+
+  /* FAQ */
+  .faq { background: var(--mist); padding: clamp(100px, 14vh, 160px) 0; }
+  .faq .grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 110px); align-items: start; }
+  .faq .intro { position: sticky; top: 120px; }
+  .faq h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 12ch; }
+  .faq .lead { margin-top: 22px; color: var(--muted); max-width: 36ch; }
+  .faq .lead a, .faq .a a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--sky); }
+  .faq details { border-top: 1px solid var(--line); }
+  .faq details:last-child { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 26px 0; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(19px, 1.5vw, 23px); line-height: 1.3; }
+  .faq summary i { flex: none; font-size: 22px; color: var(--sky); transition: transform .5s var(--ease); }
+  @media (hover: hover) { .faq summary:hover h3 { color: var(--muted); } }
+  .faq details[open] summary i { transform: rotate(45deg); }
+  .faq .a { padding: 0 48px 28px 0; color: var(--muted); max-width: 62ch; }
+  .faq details[open] .a { animation: faqIn .6s var(--ease); }
+  @keyframes faqIn { from { opacity: 0; transform: translateY(-6px); } }
+  @media (max-width: 1023px) { .faq .grid { grid-template-columns: 1fr; } .faq .intro { position: static; } .faq .a { padding-right: 0; } }
+  @media (prefers-reduced-motion: reduce) { .faq details[open] .a { animation: none; } }
+
+  /* Richiesta */
+  .book { padding: clamp(110px, 15vh, 170px) 0; }
+  .book .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 6vw, 110px); align-items: center; }
+  .book h2 { font-size: clamp(38px, 4vw, 64px); line-height: 1.06; }
+  .book .lead { margin-top: 20px; color: var(--muted); max-width: 42ch; }
+  .book form { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .field { display: grid; gap: 8px; }
+  .field label { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .field input, .field select { width: 100%; padding: 14px 0; background: transparent; border: 0; border-bottom: 1px solid rgba(20,32,51,.35); border-radius: 0; font-size: 17px; outline: none; transition: border-color .3s; -webkit-appearance: none; appearance: none; }
+  .field select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 12px) 50%, calc(100% - 7px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+  .field input:focus, .field select:focus { border-color: var(--ink); }
+  .field small { font-size: 12px; color: var(--muted); }
+  .book form .btn { grid-column: 1 / -1; justify-content: center; margin-top: 10px; }
+  .book .pic { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+  .book .pic img { width: 100%; height: 115%; object-fit: cover; }
+
+  /* Footer */
+  .foot { background: var(--night); color: rgba(255,255,255,.82); padding: 90px 0 36px; font-size: 15px; }
+  .foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+  .foot img { width: 170px; }
+  .foot .tagline { margin-top: 18px; font-size: 13px; max-width: 30ch; opacity: .7; }
+  .foot h4 { font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: #fff; margin-bottom: 18px; }
+  .foot li { list-style: none; margin-bottom: 10px; }
+  .foot a:hover { color: #fff; }
+  .foot .legal { margin-top: 70px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-size: 13px; opacity: .7; }
+
+  .totop { position: fixed; right: 22px; bottom: 22px; z-index: 40; width: 48px; height: 48px; display: grid; place-items: center; background: var(--paper); color: var(--ink); border: 1px solid var(--line); font-size: 20px; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .4s, transform .4s var(--ease); }
+  .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+
+  /* Comparsa al primo caricamento e allo scorrimento */
+  .rv { opacity: 0; transform: translateY(26px); }
+
+  @media (max-width: 1023px) {
+    .hdr nav a:not(.btn) { display: none; }
+    .hero .in { grid-template-columns: 1fr; }
+    .hero .ctas { flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .feats { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .feat { padding: 24px 18px; }
+    .includes .grid { grid-template-columns: 1fr; }
+    .who .intro { grid-template-columns: 1fr; align-items: start; }
+    .profiles { grid-template-columns: 1fr; gap: 16px; }
+    .profile { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+    .profile .ph { aspect-ratio: auto; min-height: 100%; }
+    /* Residenze su mobile: foto a tutta altezza, titolo e scheda in vetro sopra la foto (come su desktop, impilati) */
+    .apts__head { flex-direction: column; align-items: flex-start; padding-bottom: 36px; }
+    .apts__track { flex-direction: column; width: auto; gap: 24px; }
+    .apt { width: 100%; height: auto; min-height: min(88vh, 780px); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; }
+    .apt > img { position: absolute; inset: 0; transform: none; }
+    .apt::after { background: linear-gradient(180deg, rgba(12,22,38,.05) 20%, rgba(12,22,38,.35) 55%, rgba(12,22,38,.6) 100%); }
+    .apt__title { position: relative; left: auto; bottom: auto; width: auto; margin-bottom: 18px; }
+    .apt__title h3 { max-width: none; font-size: 40px; }
+    .apt .card { position: relative; right: auto; bottom: auto; width: 100%; }
+    .spec div { padding: 14px 16px; }
+    .spec strong { font-size: 16px; }
+    .apt .bar { padding: 14px 16px; }
+    .book .grid { grid-template-columns: 1fr; }
+    .book .pic { display: none; }
+    .foot .cols { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    body { font-size: 16px; }
+    .hdr { height: 64px; }
+    .hero::after { background: linear-gradient(180deg, rgba(12,22,38,.4) 0%, rgba(12,22,38,.12) 28%, rgba(12,22,38,.5) 55%, rgba(12,22,38,.82) 100%); }
+    .hdr .logo { width: 120px; height: 50px; }
+    .cap { right: var(--gutter); max-width: none; bottom: 170px; }
+    .clock { left: var(--gutter); right: var(--gutter); align-items: stretch; }
+    .clock .time { font-size: 40px; }
+    .dayline { width: 100%; font-size: 10px; letter-spacing: .12em; }
+    .profile { grid-template-columns: 1fr; }
+    .profile .ph { aspect-ratio: 16 / 10; }
+    .profile .tx { padding: 24px 22px 28px; }
+    .apt__title p { display: none; }
+    .energy ul { grid-template-columns: 1fr; gap: 36px; }
+    .energy li { border-left: 0; padding: 0; }
+    .strips { flex-direction: column; height: auto; min-height: 0; }
+    .strip, .strip.on { flex: none; height: 300px; }
+    .strip:not(.on) h3 { writing-mode: horizontal-tb; transform: none; }
+    .strip p { opacity: 1; transform: none; }
+    .place .card { margin: -80px var(--gutter) 0; }
+    .book form { grid-template-columns: 1fr; }
+    .foot .cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 420px) { .feat h3 { font-size: 21px; } .feat p { font-size: 14px; } }
+
+  /* Movimento ridotto: niente pin, le scene diventano blocchi normali */
+  @media (prefers-reduced-motion: reduce) {
+    .rv { opacity: 1; transform: none; }
+    .day { height: auto; }
+    .sc { position: relative; opacity: 1; height: 100dvh; }
+    .cap .when { display: block; }
+    .clock { display: none; }
+    .hero .bg img { transform: none; }
+    .apts__pin { overflow-x: auto; }
+    .apt > img { transform: none; }
+    * { transition-duration: .01ms !important; }
+  }
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Can I stay for just one month?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Stays start at one month and can last up to twelve. Tell us the months you have in mind and we reply with availability for each residence."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is included in the monthly rate?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Your private residence, regular housekeeping, high-speed Starlink, air conditioning and heating, the two infinity pools, hot tubs, the gym and a team on site. The full list is in Your stay includes, and every proposal comes with clear, written terms."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is the connection good enough for remote work?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Every residence has high-speed Starlink, stable enough for video calls and large files. The Canary Islands share the time zone of London and Lisbon, so your meetings keep their usual hours."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is Villa Stella Maris adults only?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Only adults live here, across fourteen residences: the villa stays calm all day, ideal for working, resting and living at your own pace."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can a company arrange a stay for a team or a film crew?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. We work with companies and productions that need several residences for weeks or months: one contact for everything, flexible dates and complete discretion. Just tell us the number of people and the period in the request form."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the weather like in winter?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Mild. January afternoons average around 21 °C, and in August they stay below 30 °C. The Atlantic is around 19 °C in winter, so a swim is never out of season."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What kind of contract do you use?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "A seasonal rental contract under Spanish law (contrato de temporada), for stays of one to twelve months. Before signing you receive everything in writing: dates, rate and what is included."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How far is Puerto Calero from the airport?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Lanzarote Airport is about 15 km away, roughly 15 to 20 minutes by car. Arrecife, the island's capital, and Puerto del Carmen are also close by."
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <a href="#top" class="logo" aria-label="Villa Stella Maris, home">
+    <img class="white" src="img/logo-white-villa.png" alt="Villa Stella Maris">
+    <img class="blue" src="img/logo-blue-villa.png" alt="" aria-hidden="true">
+  </a>
+  <nav aria-label="Main">
+    <a href="#residences">Residences</a>
+    <a href="#who">Who it's for</a>
+    <a href="#lanzarote">Lanzarote</a>
+    <a href="#location">Puerto Calero</a>
+    <a href="#book" class="btn">Request availability</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Villa Stella Maris">
+    <div class="bg"><img src="img/hero-2.webp" alt="Villa Stella Maris, long-term villa rental on the seafront of Puerto Calero, Lanzarote, infinity pool at sunrise"></div>
+    <div class="in">
+      <div>
+        <h1 class="label rv">Luxury long-term villa rental in Puerto Calero, Lanzarote</h1>
+        <p class="slogan" id="tw1">Same life. A better <em class="hl">horizon</em>.</p>
+        <p class="kicker" id="tw2">Live by the ocean. Work, create, breathe.</p>
+        <p class="rv">An exclusive villa of fourteen private residences to rent from one to twelve months, adults only, cared for like a five-star hotel.</p>
+      </div>
+      <div class="ctas rv">
+        <a href="#book" class="btn btn-light">Request availability</a>
+        <a href="#day" class="link">A day here <i class="ph-light ph-arrow-down"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RACCONTO: una giornata in 5 scene -->
+  <section class="day" id="day" aria-label="A day at Villa Stella Maris">
+    <div class="sc sc1">
+      <div class="media"><img src="img/s1-mattino.webp" alt="Breakfast on a sea-view terrace in the morning" loading="lazy"></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">07:00</span><span class="label" style="color:#fff;opacity:.8">Morning</span><h2>Wake to the sound of the ocean.</h2><p>The morning light of Lanzarote, the waves below your terrace, breakfast without hurry. Recharge, then turn to your work, your business or the life project that brought you here.</p></div>
+    </div>
+    <div class="sc sc2">
+      <div class="media"><img src="img/s1b-lavoro-3-specchio.webp" alt="Remote work on a terrace facing the ocean in Lanzarote" loading="lazy"></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">09:00</span><span class="label" style="color:#fff;opacity:.8">Work</span><h2>Your office for the season, by the pool.</h2><p>High-speed, stable Starlink for remote work and the same time zone as London and Lisbon: your calls run on time, your files fly. Fewer distractions, clearer thoughts: you work better, not less.</p></div>
+    </div>
+    <div class="sc sc3">
+      <div class="media"><img src="img/s2-piscina.webp" alt="Swimming in an infinity pool facing the ocean at midday" loading="lazy"></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">13:00</span><span class="label" style="color:#fff;opacity:.8">Midday</span><h2>A swim between two calls.</h2><p>Two infinity pools, only blue beyond the edge, and the sun on your shoulders, even in January. Free afternoon? The island is yours: the craters of Timanfaya, the waves of Famara, the coves of Papagayo.</p></div>
+    </div>
+    <div class="sc sc4">
+      <div class="media"><video src="video/tramonto.mp4" poster="video/tramonto.jpg" muted loop playsinline preload="none"></video></div>
+      <div class="tint"></div>
+      <div class="cap"><span class="when">18:00</span><span class="label" style="color:#fff;opacity:.8">Sunset</span><h2>The working day ends at the marina.</h2><p>Close the laptop and walk down to Puerto Calero: boats coming in, a drink by the water, dinner in the harbour.</p></div>
+    </div>
+    <div class="sc sc5">
+      <div class="media"><img src="img/s4-notte.webp" alt="Hot tub on a terrace under a starry sky" loading="lazy"></div>
+      <div class="tint"></div>
+      <canvas id="stars" aria-hidden="true"></canvas>
+      <div class="cap"><span class="when">22:00</span><span class="label" style="color:#fff;opacity:.8">Night</span><h2>The stars come out over the hot tub.</h2><p>Warm water under an open sky, then a home that stays as warm or as cool as you like. Tomorrow, the same good rhythm.</p></div>
+    </div>
+    <div class="clock" aria-hidden="true">
+      <div class="time" id="time">07:00</div>
+      <div class="dayline"><i id="dayfill"></i><span class="on">Morning</span><span>Work</span><span>Midday</span><span>Sunset</span><span>Night</span></div>
+    </div>
+  </section>
+
+  <!-- POSIZIONAMENTO: dal blu notte al bianco -->
+  <section class="why" id="why">
+    <div class="wrap">
+      <span class="label rv">Why Villa Stella Maris</span>
+      <h2 class="rv">Lanzarote has hotels for a week.<br> This is a place to <em class="hl">stay</em>.</h2>
+      <p class="lead rv">Villa Stella Maris is a long-term rental in Lanzarote for people who want to live by the ocean for a few months without giving up their life, or their standards. Each private residence is a real home, with bedroom, living room, kitchen and outdoor space, cared for like a five-star hotel, in a villa that produces its own energy: every comfort, with a lighter touch on the island. Unlike a hotel, the home is yours. Unlike a rented villa, there is nothing to organise. From one month to twelve, adults only.</p>
+      <ul class="feats">
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-key"></i></span><h3>Fourteen residences, adults only</h3><p>An exclusive address with few residents and real privacy. A villa that never feels busy, where the team knows your name.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-wifi-high"></i></span><h3>A connection you can trust</h3><p>High-speed Starlink, stable enough for video calls and large files, and the same time zone as London and Lisbon.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-sun-horizon"></i></span><h3>Spring all year</h3><p>Winters around 20&nbsp;°C, summers below 30&nbsp;°C: one of the few places in the world where every season is good to live in.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-swimming-pool"></i></span><h3>Wellness at your door</h3><p>Two infinity pools, hot tubs and a gym, a few steps from home. Your training and your rest, without leaving the villa.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-thermometer-simple"></i></span><h3>Comfort, with its own energy</h3><p>Air conditioning and heating in every residence, rare on Lanzarote, powered by a villa that produces its own energy.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-chat-circle-text"></i></span><h3>A team that answers</h3><p>Attentive, fast replies before you arrive and support throughout your stay, with discretion and reliability.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- RESIDENZE: pan orizzontale su desktop, colonna su mobile -->
+  <section class="apts" id="residences">
+    <div class="wrap apts__head">
+      <div>
+        <span class="label rv">The residences</span>
+        <h2 class="rv">Choose how you meet the <em class="hl">morning</em>.</h2>
+        <p class="apts__lead rv">Only fourteen residences, in three types, available by the month: facing the sea, above the pool or around a terrace of your own. Each one a complete home, with bedroom, living room, kitchen, outdoor space and high-speed Starlink wi-fi.</p>
+      </div>
+    </div>
+    <div class="apts__pin">
+      <div class="apts__track">
+        <article class="apt">
+          <img src="img/apt-sea.webp" alt="Sea View Residence living room with floor-to-ceiling windows, Puerto Calero" loading="lazy">
+          <div class="apt__title"><span class="n">01</span><h3>Sea View Residence</h3><p>Wide glass and the ocean as your living room wall. Every morning a different blue.</p></div>
+          <div class="card">
+            <div class="spec">
+              <div><span>View</span><strong>Atlantic</strong></div>
+              <div><span>Outdoor</span><strong>Terrace</strong></div>
+              <div><span>Kitchen</span><strong>Complete</strong></div>
+              <div><span>Climate</span><strong>A/C + heating</strong></div>
+              <div><span>Starlink Wi-Fi</span><strong>High-speed</strong></div>
+              <div><span>Pools</span><strong>Two infinity</strong></div>
+            </div>
+            <div class="bar"><small>One to twelve months.<br>Rate on request.</small><a href="#book" class="btn btn-light">Request</a></div>
+          </div>
+        </article>
+        <article class="apt">
+          <img src="img/apt-pool.webp" alt="Pool view residence open-plan living and dining area" loading="lazy">
+          <div class="apt__title"><span class="n">02</span><h3>Pool View Residence</h3><p>Open-plan living above the infinity pool, with the ocean just beyond. A swim is always a few steps away.</p></div>
+          <div class="card">
+            <div class="spec">
+              <div><span>View</span><strong>Infinity pool</strong></div>
+              <div><span>Outdoor</span><strong>Terrace</strong></div>
+              <div><span>Kitchen</span><strong>Complete</strong></div>
+              <div><span>Climate</span><strong>A/C + heating</strong></div>
+              <div><span>Starlink Wi-Fi</span><strong>High-speed</strong></div>
+              <div><span>Pools</span><strong>Two infinity</strong></div>
+            </div>
+            <div class="bar"><small>One to twelve months.<br>Rate on request.</small><a href="#book" class="btn btn-light">Request</a></div>
+          </div>
+        </article>
+        <article class="apt">
+          <img src="img/apt-jacuzzi.webp" alt="Terrace residence with hot tub at dusk" loading="lazy">
+          <div class="apt__title"><span class="n">03</span><h3>Terrace Residence</h3><p>A terrace of your own, made for long evenings outside and dinners under the stars.</p></div>
+          <div class="card">
+            <div class="spec">
+              <div><span>View</span><strong>Ocean</strong></div>
+              <div><span>Outdoor</span><strong>Large terrace</strong></div>
+              <div><span>Kitchen</span><strong>Complete</strong></div>
+              <div><span>Climate</span><strong>A/C + heating</strong></div>
+              <div><span>Starlink Wi-Fi</span><strong>High-speed</strong></div>
+              <div><span>Pools</span><strong>Two infinity</strong></div>
+            </div>
+            <div class="bar"><small>One to twelve months.<br>Rate on request.</small><a href="#book" class="btn btn-light">Request</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSA È INCLUSO: fondo blu notte, elenco chiaro (voci da confermare con la proprietà: frequenza pulizie ecc.) -->
+  <section class="includes" id="included">
+    <div class="wrap grid">
+      <div>
+        <span class="label rv">Your stay includes</span>
+        <h2 class="rv">Everything ready.<br> Nothing to <em class="hl">organise</em>.</h2>
+        <p class="lead rv">One monthly rate, agreed in advance, with everything listed clearly. You arrive, unpack and start living.</p>
+      </div>
+      <ul>
+          <li class="rv"><i class="ph-light ph-house-line"></i><div><h3>Your private residence</h3><p>Bedroom, living room, a full kitchen with fine tableware and your own outdoor space.</p></div></li>
+          <li class="rv"><i class="ph-light ph-sparkle"></i><div><h3>Housekeeping</h3><p>Regular cleaning throughout your stay, so your home always feels freshly prepared.</p></div></li>
+          <li class="rv"><i class="ph-light ph-wifi-high"></i><div><h3>High-speed Starlink</h3><p>Fast, stable connection for work and calls.</p></div></li>
+          <li class="rv"><i class="ph-light ph-thermometer-simple"></i><div><h3>Air conditioning and heating</h3><p>In every residence, for the right temperature in every season.</p></div></li>
+          <li class="rv"><i class="ph-light ph-swimming-pool"></i><div><h3>Two infinity pools and hot tubs</h3><p>Facing the Atlantic, for residents only.</p></div></li>
+          <li class="rv"><i class="ph-light ph-barbell"></i><div><h3>Gym</h3><p>Train every day without leaving the villa.</p></div></li>
+          <li class="rv"><i class="ph-light ph-headset"></i><div><h3>Support on site</h3><p>A team that answers quickly and takes care of the details.</p></div></li>
+          <li class="rv"><i class="ph-light ph-lock-key"></i><div><h3>Privacy and calm</h3><p>Adults only, fourteen residences, an exclusive address.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PER CHI È: fondo azzurro, foto e numeri -->
+  <section class="who" id="who">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <span class="label rv">Who it's for</span>
+          <h2 class="rv">Made for people with a <em class="hl">plan</em>.</h2>
+        </div>
+        <p class="lead rv">Everyone arrives with a reason: a project, a new chapter, a job to follow on the island. What they remember is how their days changed: more light, more time, more ocean, and an exclusive place that felt like home from the first week.</p>
+      </div>
+      <div class="profiles">
+        <article class="profile rv"><div class="ph"><img src="img/who-remote-man-2.webp" alt="A man with a coffee working on his laptop in a bright living room" loading="lazy" style="object-position:40% 50%"></div><div class="tx"><span class="n">01</span><h3>Remote work in Lanzarote</h3><p><strong>Founders, consultants and remote professionals</strong> who want a productive routine by the ocean. You arrive and everything is ready: connection, space to work, home, service. The rest is your work and the island.</p></div></article>
+        <article class="profile rv"><div class="ph"><img src="img/who-couple.webp" alt="A couple on a terrace looking at the sea at sunset" loading="lazy"></div><div class="tx"><span class="n">02</span><h3>Before you move, live here first</h3><p>For <strong>couples thinking about moving to Lanzarote</strong>, or a second chapter in the sun. Live it for a few months, in every light and season, with the comfort you are used to, before choosing it for good.</p></div></article>
+        <article class="profile rv"><div class="ph"><img src="img/who-production-2.webp" alt="A professional film crew around a cinema camera on set" loading="lazy"></div><div class="tx"><span class="n">03</span><h3>Companies and productions</h3><p>Long-term accommodation for <strong>professionals on assignment, film crews and project teams.</strong> One contact, flexible dates, complete discretion, and evenings by the marina after long working days.</p></div></article>
+      </div>
+      <p class="also rv">And for anyone with a project of their own: <strong>writers</strong> finishing a book, <strong>athletes</strong> training under a dry winter sun, <strong>sailors</strong> waiting at the marina for the Atlantic crossing.</p>
+    </div>
+  </section>
+
+  <!-- ENERGIA -->
+  <section class="energy" id="energy">
+    <div class="wrap">
+      <span class="label rv">Energy self-sufficient</span>
+      <h2 class="rv">Its own energy. Your own silence.</h2>
+      <p class="lead rv">A home that produces its own energy: comfort that is silent and independent, and a lighter footprint on the island you have chosen to live on.</p>
+      <ul>
+        <li class="rv"><i class="ph-light ph-solar-panel"></i><h3>Produced on site</h3><p>How the building generates its energy.</p></li>
+        <li class="rv"><i class="ph-light ph-battery-high"></i><h3>Stored for the night</h3><p>Energy available when the sun goes down.</p></li>
+        <li class="rv"><i class="ph-light ph-leaf"></i><h3>Lighter footprint</h3><p>What it means for Lanzarote.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LANZAROTE -->
+  <section class="island" id="lanzarote">
+    <div class="wrap">
+      <span class="label rv">Lanzarote</span>
+      <h2 class="rv">An island you get to know <em class="hl">slowly</em>.</h2>
+      <p class="lead rv">Black sand, red craters and César Manrique's white architecture, in a UNESCO Biosphere Reserve, with mild winters and gentle summers. With months instead of days, living in Lanzarote stops being a list of places and becomes your life: a swim before work, a hike on a free afternoon, Sunday lunch in a fishing village.</p>
+      <div class="strips rv">
+        <button class="strip on"><img src="img/lz-golfo.webp" alt="El Golfo green lagoon" loading="lazy"><span class="t"><h3>El Golfo</h3><p>The green lagoon under a volcanic cliff, and fresh fish in the village below.</p></span></button>
+        <button class="strip"><img src="img/lz-papagayo.webp" alt="Papagayo coves" loading="lazy"><span class="t"><h3>Papagayo</h3><p>Sheltered coves on the southern coast, for a swim before the day begins.</p></span></button>
+        <button class="strip"><img src="img/lz-timanfaya.webp" alt="Timanfaya National Park" loading="lazy"><span class="t"><h3>Timanfaya</h3><p>The national park of fire mountains, a short drive from home.</p></span></button>
+        <button class="strip"><img src="img/lz-manrique.webp" alt="César Manrique architecture" loading="lazy"><span class="t"><h3>César Manrique</h3><p>Art and architecture born from the lava, to discover one place at a time.</p></span></button>
+        <button class="strip"><img src="img/lz-graciosa.webp" alt="La Graciosa seen from the northern cliffs" loading="lazy"><span class="t"><h3>La Graciosa</h3><p>The quiet island off the northern cliffs, worth a whole free day.</p></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUERTO CALERO -->
+  <section class="place" id="location">
+    <div class="vid"><video src="video/marina.mp4" poster="video/marina.jpg" muted loop playsinline preload="none"></video></div>
+    <div class="card rv">
+      <span class="label">Puerto Calero</span>
+      <h2>Puerto Calero: your neighbourhood by the marina.</h2>
+      <p class="lead">Puerto Calero marina, a small harbour on the south coast, a short drive from Puerto del Carmen: a morning walk along the boats, cafés and restaurants by the water, sailing and sea outings from the dock. Calm all year, and the feeling of living somewhere, not passing through.</p>
+      <a class="link" href="https://maps.google.com/?q=Puerto+Calero+Lanzarote" target="_blank" rel="noopener">Open in Google Maps <i class="ph-light ph-arrow-up-right"></i></a>
+    </div>
+  </section>
+
+  <!-- FAQ: domande frequenti (testi in bozza; la risposta sul contratto va validata dall'avvocato) -->
+  <section class="faq" id="faq">
+    <div class="wrap grid">
+      <div class="intro">
+        <span class="label rv">FAQ</span>
+        <h2 class="rv">The questions we hear <em class="hl">most</em>.</h2>
+        <p class="lead rv">Anything else on your mind? <a href="#book">Send a request</a> and our team will answer you personally.</p>
+      </div>
+      <div class="list">
+        <details class="rv" open><summary><h3>Can I stay for just one month?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes. Stays start at one month and can last up to twelve. Tell us the months you have in mind and we reply with availability for each residence.</p></div></details>
+        <details class="rv"><summary><h3>What is included in the monthly rate?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Your private residence, regular housekeeping, high-speed Starlink, air conditioning and heating, the two infinity pools, hot tubs, the gym and a team on site. The full list is in <a href="#included">Your stay includes</a>, and every proposal comes with clear, written terms.</p></div></details>
+        <details class="rv"><summary><h3>Is the connection good enough for remote work?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Every residence has high-speed Starlink, stable enough for video calls and large files. The Canary Islands share the time zone of London and Lisbon, so your meetings keep their usual hours.</p></div></details>
+        <details class="rv"><summary><h3>Is Villa Stella Maris adults only?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes. Only adults live here, across fourteen residences: the villa stays calm all day, ideal for working, resting and living at your own pace.</p></div></details>
+        <details class="rv"><summary><h3>Can a company arrange a stay for a team or a film crew?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes. We work with companies and productions that need several residences for weeks or months: one contact for everything, flexible dates and complete discretion. Just tell us the number of people and the period in the request form.</p></div></details>
+        <details class="rv"><summary><h3>What is the weather like in winter?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Mild. January afternoons average around 21&nbsp;°C, and in August they stay below 30&nbsp;°C. The Atlantic is around 19&nbsp;°C in winter, so a swim is never out of season.</p></div></details>
+        <details class="rv"><summary><h3>What kind of contract do you use?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>A seasonal rental contract under Spanish law (<i lang="es">contrato de temporada</i>), for stays of one to twelve months. Before signing you receive everything in writing: dates, rate and what is included.</p></div></details>
+        <details class="rv"><summary><h3>How far is Puerto Calero from the airport?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Lanzarote Airport is about 15&nbsp;km away, roughly 15 to 20 minutes by car. Arrecife, the island's capital, and Puerto del Carmen are also close by.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- RICHIESTA -->
+  <section class="book" id="book">
+    <div class="wrap grid">
+      <div>
+        <span class="label rv">Request a stay</span>
+        <h2 class="rv">Tell us about your <em class="hl">months</em> here.</h2>
+        <p class="lead rv">Choose the period, the residence and the number of guests. A member of our team reads every request and replies quickly and personally, with availability, clear terms and a proposal for your long-term rental, shaped around the months you have in mind.</p>
+        <form class="rv" onsubmit="event.preventDefault()">
+          <div class="field"><label for="f-in">From</label><input id="f-in" type="month"></div>
+          <div class="field"><label for="f-out">To</label><input id="f-out" type="month"></div>
+          <div class="field"><label for="f-g">Guests</label><select id="f-g"><option>1 adult</option><option>2 adults</option></select></div>
+          <div class="field"><label for="f-a">Residence</label><select id="f-a"><option>Any</option><option>Sea View</option><option>Pool View</option><option>Terrace</option></select></div>
+          <div class="field"><label for="f-n">Name</label><input id="f-n" type="text" autocomplete="name"></div>
+          <div class="field"><label for="f-e">Email</label><input id="f-e" type="email" autocomplete="email"></div>
+          <button class="btn btn-solid" type="submit">Request availability</button>
+          <ul class="assure"><li><i class="ph-light ph-lightning"></i>Fast, personal reply</li><li><i class="ph-light ph-file-text"></i>Clear terms, no surprises</li><li><i class="ph-light ph-shield-check"></i>Discretion and reliability</li></ul>
+          <div class="field" style="grid-column:1/-1"><small>Minimum stay one month.</small></div>
+        </form>
+      </div>
+      <div class="pic rv"><img src="img/hero-4.webp" alt="Infinity pool facing the Atlantic at sunset, Puerto Calero marina" loading="lazy" id="bookpic"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div><img src="img/logo-white-villa.png" alt="Villa Stella Maris"><p class="tagline">Long-term villa rental in Puerto Calero, Lanzarote · 1 to 12 months</p></div>
+      <div><h4>Live here</h4><ul><li><a href="#residences">Residences</a></li><li><a href="#included">What's included</a></li><li><a href="#who">Who it's for</a></li><li><a href="#day">A day here</a></li><li><a href="#energy">Energy</a></li></ul></div>
+      <div><h4>Discover</h4><ul><li><a href="#lanzarote">Lanzarote</a></li><li><a href="#location">Puerto Calero</a></li><li><a href="#faq">FAQ</a></li><li><a href="#">Journal</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>Puerto Calero, Lanzarote, Spain</li><li><a href="#book">Request availability</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Villa Stella Maris</span><span><a href="#">Privacy</a> · <a href="#">Cookies</a> · <a href="#">Legal notice</a></span></div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top"><i class="ph-light ph-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hdr = document.getElementById('hdr');
+  const totop = document.getElementById('totop');
+  totop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+
+  /* Lanzarote: una striscia aperta alla volta */
+  const strips = document.querySelectorAll('.strip');
+  strips.forEach(s => {
+    const open = () => strips.forEach(x => x.classList.toggle('on', x === s));
+    s.addEventListener('click', open);
+    s.addEventListener('mouseenter', () => { if (matchMedia('(hover: hover)').matches) open(); });
+  });
+
+  /* Video: partono solo quando sono visibili */
+  const vids = document.querySelectorAll('video');
+  const vio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(() => {}); } else e.target.pause();
+  }), { threshold: .15 });
+  vids.forEach(v => vio.observe(v));
+
+  /* Stelle sulla scena delle 22:00 */
+  const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+  let stars = [], starsOn = false, raf;
+  function sizeStars() {
+    const r = cv.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+    cv.width = r.width * d; cv.height = r.height * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    stars = Array.from({ length: Math.round(r.width * r.height / 9000) }, () => ({
+      x: Math.random() * r.width, y: Math.random() * r.height * .55, s: Math.random() * 1.3 + .3, p: Math.random() * 6.28, v: Math.random() * .8 + .3
+    }));
+  }
+  function drawStars(t) {
+    const r = cv.getBoundingClientRect();
+    ctx.clearRect(0, 0, r.width, r.height);
+    for (const s of stars) {
+      const a = reduce ? .8 : .45 + .45 * Math.sin(t / 1000 * s.v + s.p);
+      ctx.fillStyle = `rgba(255,255,255,${a})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.s, 0, 6.28); ctx.fill();
+    }
+    if (starsOn && !reduce) raf = requestAnimationFrame(drawStars);
+  }
+  sizeStars(); drawStars(0);
+  addEventListener('resize', () => { sizeStars(); drawStars(performance.now()); });
+
+  /* Hero: le due frasi si scrivono a macchina, una dopo l'altra (senza GSAP, così funziona anche se la libreria non carica) */
+  function prepTW(el) {
+    el.setAttribute('aria-label', el.textContent);
+    const chars = [];
+    (function walk(n) {
+      [...n.childNodes].forEach(c => {
+        if (c.nodeType !== 3) return walk(c);
+        const frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(part));
+          const w = document.createElement('span');
+          w.className = 'tw-w'; w.setAttribute('aria-hidden', 'true');
+          [...part].forEach(ch => { const s = document.createElement('span'); s.className = 'tw-c'; s.textContent = ch; w.appendChild(s); chars.push(s); });
+          frag.appendChild(w);
+        });
+        c.replaceWith(frag);
+      });
+    })(el);
+    el.classList.add('ready');
+    return chars;
+  }
+  function typeOut(chars, speed, caret, done) {
+    let i = 0;
+    (function step() {
+      if (i < chars.length) { chars[i].classList.add('on'); chars[i].after(caret); i++; setTimeout(step, speed); }
+      else if (done) done();
+    })();
+  }
+  if (!reduce) {
+    const c1 = prepTW(document.getElementById('tw1')), c2 = prepTW(document.getElementById('tw2'));
+    const caret = document.createElement('span'); caret.className = 'caret'; caret.setAttribute('aria-hidden', 'true');
+    setTimeout(() => typeOut(c1, 62, caret, () => setTimeout(() => typeOut(c2, 38, caret, () => {
+      setTimeout(() => caret.classList.add('off'), 700);
+      setTimeout(() => caret.remove(), 1400);
+      dispatchEvent(new Event('tw-done'));
+    }), 380)), 750);
+  }
+
+  if (reduce) {
+    hdr.classList.add('solid');
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Hero: zoom lento della foto e comparsa dei testi */
+  gsap.to('.hero .bg img', { scale: 1, duration: 2.6, ease: 'power3.out' });
+  gsap.to('.hero .label.rv', { opacity: 1, y: 0, duration: 1.3, ease: 'power3.out', delay: .3 });
+  addEventListener('tw-done', () => gsap.to('.hero p.rv, .hero .ctas.rv', { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', stagger: .14 }), { once: true });
+  gsap.to('.hero .bg img', { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* Racconto: scena fissata, dissolvenze tra le ore, orologio che scorre */
+  const sc = gsap.utils.toArray('.sc');
+  const n = sc.length;
+  const hours = [7, 9, 13, 18, 22];
+  const timeEl = document.getElementById('time');
+  const fill = document.getElementById('dayfill');
+  const marks = document.querySelectorAll('.dayline span');
+  const fmt = h => { const m = Math.round((h % 1) * 60 / 5) * 5; const hh = Math.floor(h) + (m === 60 ? 1 : 0); return String(hh).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); };
+
+  gsap.set('.sc .cap', { opacity: 0, y: 30 });
+  gsap.set('.sc1 .cap', { opacity: 1, y: 0 });
+  sc.forEach(s => gsap.set(s.querySelector('.media'), { scale: 1.12 }));
+
+  const tl = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: '.day', start: 'top top', end: () => '+=' + innerHeight * n, pin: true, scrub: .6, anticipatePin: 1,
+      onUpdate: self => {
+        const p = self.progress * n;                        // 0..n, una unità per scena
+        const c = Math.min(Math.max(p - .5, 0), n - 1);     // centro di ogni scena = ora esatta
+        const i = Math.floor(c), f = c - i;
+        const h = i >= n - 1 ? hours[n - 1] : hours[i] + (hours[i + 1] - hours[i]) * f;
+        timeEl.textContent = fmt(h);
+        fill.style.transform = `scaleX(${self.progress})`;
+        const cur = Math.min(Math.floor(p), n - 1);
+        marks.forEach((m, j) => m.classList.toggle('on', j === cur));
+      },
+      onToggle: s => { starsOn = s.isActive; if (starsOn) raf = requestAnimationFrame(drawStars); else cancelAnimationFrame(raf); }
+    }
+  });
+  sc.forEach((s, i) => {
+    tl.to(s.querySelector('.media'), { scale: 1, duration: 1 }, i);
+    if (i === 0) return;
+    const prev = sc[i - 1];
+    tl.to(prev.querySelector('.cap'), { opacity: 0, y: -24, duration: .22 }, i - .3)
+      .to(s, { opacity: 1, duration: .35 }, i - .25)
+      .to(s.querySelector('.cap'), { opacity: 1, y: 0, duration: .25 }, i - .05);
+  });
+  tl.to({}, { duration: .4 }, n);
+
+  /* Header: trasparente sulle foto, chiaro sulle sezioni bianche (creato dopo il pin, così le posizioni tengono conto delle scene) */
+  ScrollTrigger.create({ trigger: '.why', start: 'top 76px', end: 'max', toggleClass: { targets: hdr, className: 'solid' } });
+  ScrollTrigger.create({ start: () => innerHeight, end: 'max', onToggle: s => totop.classList.toggle('show', s.isActive) });
+
+  /* Posizionamento: dal blu notte al bianco calce */
+  gsap.to('.why', { backgroundColor: '#f5f8f9', color: '#142033', ease: 'none', scrollTrigger: { trigger: '.why', start: 'top 75%', end: 'top 40%', scrub: true } });
+
+  /* Card "Why": entrata in sequenza come nella bozza 1 (sipario, filetto, icona con onda, testi, riflesso) */
+  gsap.utils.toArray('.feat').forEach((card, i) => {
+    const t = gsap.timeline({ delay: i * .16, scrollTrigger: { trigger: '.feats', start: 'top 82%' } });
+    t.from(card, { clipPath: 'inset(100% 0% 0% 0%)', y: 40, duration: 1.3, ease: 'expo.out', clearProps: 'transform,clipPath' })
+      .fromTo(card.querySelector('.feat__line'), { scaleX: 0 }, { scaleX: 1, duration: .9, ease: 'power3.inOut' }, '-=.9')
+      .to(card.querySelector('.feat__line'), { scaleX: .18, duration: .8, ease: 'power3.inOut', clearProps: 'transform' })
+      .from(card.querySelector('.feat__icon'), { scale: .4, rotate: -25, opacity: 0, duration: 1, ease: 'expo.out', clearProps: 'transform,opacity' }, '-=1.5')
+      .fromTo(card.querySelector('.feat__ring'), { scale: .8, opacity: .7 }, { scale: 1.7, opacity: 0, duration: 1.4, ease: 'power2.out' }, '-=.8')
+      .from(card.querySelectorAll('h3,p'), { y: 16, opacity: 0, duration: .9, ease: 'expo.out', stagger: .08 }, '-=1.3')
+      .to(card.querySelector('.feat__shine'), { x: '120%', duration: 1.4, ease: 'power2.inOut' }, '-=.7');
+  });
+
+  /* Residenze: su desktop la sezione si ferma e scorre in orizzontale (creato prima delle comparse sotto, così le posizioni tengono conto del pin) */
+  gsap.matchMedia().add('(min-width: 1024px)', () => {
+    const track = document.querySelector('.apts__track');
+    const dist = () => track.scrollWidth - innerWidth;
+    gsap.to(track, { x: () => -dist(), ease: 'none', scrollTrigger: { trigger: '.apts__pin', start: 'top 104px', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true } });
+    gsap.utils.toArray('.apt > img').forEach(img => gsap.to(img, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.apts__pin', start: 'top 104px', end: () => '+=' + dist(), scrub: true } }));
+  });
+
+  /* Comparse allo scorrimento */
+  gsap.utils.toArray('main .rv:not(.hero .rv)').forEach(el => {
+    gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+  });
+
+  /* Per chi è: le foto si aprono dal basso */
+  gsap.utils.toArray('.profile .ph').forEach((ph, i) => {
+    gsap.from(ph, { clipPath: 'inset(100% 0% 0% 0%)', duration: 1.4, delay: i * .12, ease: 'expo.out', clearProps: 'clipPath', scrollTrigger: { trigger: '.profiles', start: 'top 82%' } });
+  });
+
+  /* Richiesta: leggera parallasse della foto */
+  gsap.to('#bookpic', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '.book', start: 'top bottom', end: 'bottom top', scrub: true } });
+})();
+</script>
+</body>
+</html>
