@@ -151,7 +151,7 @@
   .who .also { margin-top: clamp(48px, 7vh, 72px); padding-left: 24px; border-left: 2px solid var(--sky); font-family: var(--serif); font-weight: 300; font-size: clamp(19px, 1.5vw, 24px); line-height: 1.5; max-width: 66ch; }
 
   /* Residenze: pan orizzontale della bozza 1 */
-  .apts { background: var(--paper); }
+  .apts { background: #edf3f6; border-top: 1px solid var(--line); }  /* stacco leggero dalla sezione Why (richiesta di Marco 03/11) */
   .apts__head { padding-top: clamp(100px, 14vh, 160px); padding-bottom: 48px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
   .apts h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 19ch; }
   .apts__lead { margin-top: 20px; max-width: 50ch; color: var(--muted); }
@@ -288,6 +288,7 @@
     .feats { grid-template-columns: 1fr 1fr; gap: 12px; }
     .feat { padding: 24px 18px; }
     .includes .grid { grid-template-columns: 1fr; }
+    .includes .grid > div:first-child { position: static; }  /* su mobile niente testo fisso che si sovrappone (richiesta di Marco 03/11) */
     .who .intro { grid-template-columns: 1fr; align-items: start; }
     .profiles { grid-template-columns: 1fr; gap: 16px; }
     .profile { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
@@ -310,6 +311,7 @@
   }
   @media (max-width: 700px) {
     body { font-size: 16px; }
+    .feats { grid-template-columns: 1fr; }  /* una card per riga sul telefono (richiesta di Marco 03/11) */
     .hdr { height: 64px; }
     .hero::after { background: linear-gradient(180deg, rgba(12,22,38,.4) 0%, rgba(12,22,38,.12) 28%, rgba(12,22,38,.5) 55%, rgba(12,22,38,.82) 100%); }
     .hdr .logo { width: 120px; height: 50px; }
@@ -332,6 +334,52 @@
     .foot .cols { grid-template-columns: 1fr; }
   }
   @media (max-width: 420px) { .feat h3 { font-size: 21px; } .feat p { font-size: 14px; } }
+
+  /* Residenze: riga di numeri (dati del progettista) */
+  .apts__head { flex-wrap: wrap; }
+  .apts__head > div:first-child { flex: 1 1 640px; }
+  .apts__facts { list-style: none; display: grid; grid-template-columns: repeat(4, auto); gap: 0; border-top: 1px solid var(--line); flex: none; }
+  .apts__facts li { padding: 18px 26px 0; border-left: 1px solid var(--line); }
+  .apts__facts li:first-child { border-left: 0; padding-left: 0; }
+  .apts__facts strong { display: block; font: 400 clamp(26px, 2.2vw, 36px)/1.1 var(--serif); white-space: nowrap; }
+  .apts__facts span { display: block; margin-top: 6px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+  /* Spazi comuni */
+  .shared { background: var(--paper); padding: clamp(100px, 14vh, 160px) 0; }
+  .shared .intro { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 100px); align-items: end; }
+  .shared h2 { font-size: clamp(36px, 3.8vw, 60px); line-height: 1.08; max-width: 15ch; }
+  .shared .lead { color: var(--muted); max-width: 52ch; }
+  /* Spazi comuni: tre card fotografiche per gruppo, testo sulla foto (diverse dalle card con icone di "Why" e "Your stay includes") */
+  .spaces { margin-top: clamp(56px, 8vh, 84px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .space { position: relative; aspect-ratio: 3 / 4; min-height: 540px; overflow: hidden; color: #fff; background: var(--night); }
+  .space > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.04); transition: transform 1.4s var(--ease); }
+  .space:hover > img { transform: scale(1.1); }
+  .space::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,22,38,0) 30%, rgba(12,22,38,.55) 58%, rgba(12,22,38,.9) 100%); }
+  .space .ov { position: absolute; z-index: 2; left: 28px; right: 28px; bottom: 26px; }
+  .space h3 { font-size: clamp(30px, 2.4vw, 40px); line-height: 1.08; margin-bottom: 14px; }
+  .space ul { list-style: none; }
+  .space li { padding: 11px 0; border-top: 1px solid rgba(255,255,255,.24); }
+  .space li strong { display: block; font: 400 20px/1.25 var(--serif); font-size-adjust: 0.46; }
+  .space li span { display: block; margin-top: 2px; font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,.8); }
+  .swipe { display: none; }
+  .shared .moments { margin-top: clamp(36px, 5vh, 52px); padding-left: 24px; border-left: 2px solid var(--sky); font-family: var(--serif); font-weight: 400; font-size: clamp(19px, 1.5vw, 24px); line-height: 1.5; font-size-adjust: 0.46; }
+  .shared .moments strong { font-weight: 500; }
+  .profiles { grid-template-columns: repeat(4, 1fr); }
+  .profile h3 { font-size: 24px; }
+  @media (max-width: 1200px) { .profiles { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 1100px) { .apts__facts { grid-template-columns: repeat(2, auto); } .apts__facts li:nth-child(3) { border-left: 0; padding-left: 0; } }
+  @media (max-width: 900px) {
+    .shared .intro { grid-template-columns: 1fr; align-items: start; }
+    /* su mobile le card si scorrono di lato */
+    .spaces { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin-left: calc(var(--gutter) * -1); margin-right: calc(var(--gutter) * -1); padding: 0 var(--gutter); scroll-padding: 0 var(--gutter); scrollbar-width: none; }
+    .spaces::-webkit-scrollbar { display: none; }
+    .space { flex: 0 0 min(82%, 420px); aspect-ratio: auto; min-height: 500px; scroll-snap-align: start; }
+    .swipe { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .apts__head > div:first-child { flex: none; }  /* niente buco tra testo e numeri (richiesta di Marco 03/11) */
+    .profiles { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+  }
 
   /* Movimento ridotto: niente pin, le scene diventano blocchi normali */
   @media (prefers-reduced-motion: reduce) {
@@ -368,7 +416,7 @@
    "name": "What is included in the monthly rate?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Your private residence, regular housekeeping, high-speed Starlink, air conditioning and heating, the two infinity pools, hot tubs, the gym and a team on site. The full list is in Your stay includes, and every proposal comes with clear, written terms."
+    "text": "Your private residence, regular housekeeping, high-speed Starlink, air conditioning and heating, the indoor and outdoor pools, the ocean-view hot tub, the gym, the shared spaces and a concierge. The full list is in Your stay includes, and every proposal comes with clear, written terms."
    }
   },
   {
@@ -393,6 +441,14 @@
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "Yes. We work with companies and productions that need several residences for weeks or months: one contact for everything, flexible dates and complete discretion. Just tell us the number of people and the period in the request form."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can the villa be used as a location for shoots?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, on request. Photo shoots, campaigns and small productions can use the pools, terraces and ocean views of the villa, with dates and terms agreed in advance with our team."
    }
   },
   {
@@ -473,7 +529,7 @@
     <div class="sc sc3">
       <div class="media"><img src="img/s2-piscina.webp" alt="Swimming in an infinity pool facing the ocean at midday" loading="lazy"></div>
       <div class="tint"></div>
-      <div class="cap"><span class="when">13:00</span><span class="label" style="color:#fff;opacity:.8">Midday</span><h2>A swim between two calls.</h2><p>Two infinity pools, only blue beyond the edge, and the sun on your shoulders, even in January. Free afternoon? The island is yours: the craters of Timanfaya, the waves of Famara, the coves of Papagayo.</p></div>
+      <div class="cap"><span class="when">13:00</span><span class="label" style="color:#fff;opacity:.8">Midday</span><h2>A swim between two calls.</h2><p>The outdoor pool with only blue beyond the edge and the sun on your shoulders, even in January; the heated indoor pool when the wind picks up. Free afternoon? The island is yours: the craters of Timanfaya, the waves of Famara, the coves of Papagayo.</p></div>
     </div>
     <div class="sc sc4">
       <div class="media"><video src="video/tramonto.mp4" poster="video/tramonto.jpg" muted loop playsinline preload="none"></video></div>
@@ -497,13 +553,13 @@
     <div class="wrap">
       <span class="label rv">Why Villa Stella Maris</span>
       <h2 class="rv">Lanzarote has hotels for a week.<br> This is a place to <em class="hl">stay</em>.</h2>
-      <p class="lead rv">Villa Stella Maris is a long-term rental in Lanzarote for people who want to live by the ocean for a few months without giving up their life, or their standards. Each private residence is a real home, with bedroom, living room, kitchen and outdoor space, cared for like a five-star hotel, in a villa that produces its own energy: every comfort, with a lighter touch on the island. Unlike a hotel, the home is yours. Unlike a rented villa, there is nothing to organise. From one month to twelve, adults only.</p>
+      <p class="lead rv">Villa Stella Maris is a long-term rental in Lanzarote for people who want to live by the ocean for a few months without giving up their life, or their standards. Each private residence is a home of your own, cared for like a five-star hotel, with a concierge for everything else and generous shared spaces to enjoy in any weather. Unlike a hotel, the home is yours. Unlike a rented villa, there is nothing to organise. From one month to twelve, adults only.</p>
       <ul class="feats">
         <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-key"></i></span><h3>Fourteen residences, adults only</h3><p>An exclusive address with few residents and real privacy. A villa that never feels busy, where the team knows your name.</p></li>
         <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-wifi-high"></i></span><h3>A connection you can trust</h3><p>High-speed Starlink, stable enough for video calls and large files, and the same time zone as London and Lisbon.</p></li>
         <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-sun-horizon"></i></span><h3>Spring all year</h3><p>Winters around 20&nbsp;°C, summers below 30&nbsp;°C: one of the few places in the world where every season is good to live in.</p></li>
-        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-swimming-pool"></i></span><h3>Wellness at your door</h3><p>Two infinity pools, hot tubs and a gym, a few steps from home. Your training and your rest, without leaving the villa.</p></li>
-        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-thermometer-simple"></i></span><h3>Comfort, with its own energy</h3><p>Air conditioning and heating in every residence, rare on Lanzarote, powered by a villa that produces its own energy.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-swimming-pool"></i></span><h3>Swim, train, rest</h3><p>An indoor heated pool, an outdoor pool facing the ocean, a shared hot tub and a 52&nbsp;m² gym, a few steps from home. Your training and your rest, without leaving the villa.</p></li>
+        <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-thermometer-simple"></i></span><h3>Comfort without fossil fuels</h3><p>Air conditioning and heating in every residence, rare on Lanzarote, from heat recovery and geothermal energy.</p></li>
         <li class="feat"><span class="feat__line"></span><span class="feat__shine"></span><span class="feat__icon"><span class="feat__ring"></span><i class="ph-light ph-chat-circle-text"></i></span><h3>A team that answers</h3><p>Attentive, fast replies before you arrive and support throughout your stay, with discretion and reliability.</p></li>
       </ul>
     </div>
@@ -515,22 +571,29 @@
       <div>
         <span class="label rv">The residences</span>
         <h2 class="rv">Choose how you meet the <em class="hl">morning</em>.</h2>
-        <p class="apts__lead rv">Only fourteen residences, in three types, available by the month: facing the sea, above the pool or around a terrace of your own. Each one a complete home, with bedroom, living room, kitchen, outdoor space and high-speed Starlink wi-fi.</p>
+        <p class="apts__lead rv">Fourteen residences available by the month, from 37 to 123&nbsp;m², some of them connecting for a family or a team. Almost all have private outdoor space, eight face the sea and three have a private hot tub. Every one with high-speed Starlink wi-fi.</p>
       </div>
+      <!-- Dati da Umberto (progettista, mail del 03/11): metrature commerciali senza esterni, da confermare con una tabella ufficiale -->
+      <ul class="apts__facts rv">
+        <li><strong>37–123&nbsp;m²</strong><span>Private residences</span></li>
+        <li><strong>8</strong><span>Facing the sea</span></li>
+        <li><strong>3</strong><span>Private hot tub</span></li>
+        <li><strong>Up to 8</strong><span>Guests together</span></li>
+      </ul>
     </div>
     <div class="apts__pin">
       <div class="apts__track">
         <article class="apt">
           <img src="img/apt-sea.webp" alt="Sea View Residence living room with floor-to-ceiling windows, Puerto Calero" loading="lazy">
-          <div class="apt__title"><span class="n">01</span><h3>Sea View Residence</h3><p>Wide glass and the ocean as your living room wall. Every morning a different blue.</p></div>
+          <div class="apt__title"><span class="n">01</span><h3>Sea View Residence</h3><p>Wide glass and the ocean as your fourth wall. Every morning a different blue.</p></div>
           <div class="card">
             <div class="spec">
               <div><span>View</span><strong>Atlantic</strong></div>
               <div><span>Outdoor</span><strong>Terrace</strong></div>
-              <div><span>Kitchen</span><strong>Complete</strong></div>
+              <div><span>Service</span><strong>Concierge</strong></div>
               <div><span>Climate</span><strong>A/C + heating</strong></div>
               <div><span>Starlink Wi-Fi</span><strong>High-speed</strong></div>
-              <div><span>Pools</span><strong>Two infinity</strong></div>
+              <div><span>Pools</span><strong>Indoor + outdoor</strong></div>
             </div>
             <div class="bar"><small>One to twelve months.<br>Rate on request.</small><a href="#book" class="btn btn-light">Request</a></div>
           </div>
@@ -542,30 +605,50 @@
             <div class="spec">
               <div><span>View</span><strong>Infinity pool</strong></div>
               <div><span>Outdoor</span><strong>Terrace</strong></div>
-              <div><span>Kitchen</span><strong>Complete</strong></div>
+              <div><span>Service</span><strong>Concierge</strong></div>
               <div><span>Climate</span><strong>A/C + heating</strong></div>
               <div><span>Starlink Wi-Fi</span><strong>High-speed</strong></div>
-              <div><span>Pools</span><strong>Two infinity</strong></div>
+              <div><span>Pools</span><strong>Indoor + outdoor</strong></div>
             </div>
             <div class="bar"><small>One to twelve months.<br>Rate on request.</small><a href="#book" class="btn btn-light">Request</a></div>
           </div>
         </article>
         <article class="apt">
           <img src="img/apt-jacuzzi.webp" alt="Terrace residence with hot tub at dusk" loading="lazy">
-          <div class="apt__title"><span class="n">03</span><h3>Terrace Residence</h3><p>A terrace of your own, made for long evenings outside and dinners under the stars.</p></div>
+          <div class="apt__title"><span class="n">03</span><h3>Terrace Residence</h3><p>A terrace of your own with a private hot tub, made for long evenings outside and dinners under the stars.</p></div>
           <div class="card">
             <div class="spec">
-              <div><span>View</span><strong>Ocean</strong></div>
+              <div><span>Hot tub</span><strong>Private</strong></div>
               <div><span>Outdoor</span><strong>Large terrace</strong></div>
-              <div><span>Kitchen</span><strong>Complete</strong></div>
+              <div><span>Service</span><strong>Concierge</strong></div>
               <div><span>Climate</span><strong>A/C + heating</strong></div>
               <div><span>Starlink Wi-Fi</span><strong>High-speed</strong></div>
-              <div><span>Pools</span><strong>Two infinity</strong></div>
+              <div><span>Pools</span><strong>Indoor + outdoor</strong></div>
             </div>
             <div class="bar"><small>One to twelve months.<br>Rate on request.</small><a href="#book" class="btn btn-light">Request</a></div>
           </div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- SPAZI COMUNI: il punto forte secondo Umberto (progettista, mail del 03/11): socialità, conoscersi, corsi, grigliate, ogni tempo -->
+  <section class="shared" id="shared">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <span class="label rv">Shared spaces</span>
+          <h2 class="rv">Private homes. A shared <em class="hl">villa</em>.</h2>
+        </div>
+        <p class="lead rv">Most places with private residences stop at your front door. Here the finest rooms are the ones you share: it is easy to meet people, and just as easy to keep to yourself. And with wind, sun or rain, there is always somewhere good to be.</p>
+      </div>
+      <div class="spaces">
+        <article class="space rv"><img src="img/shared-water.webp" alt="Swimming in an infinity pool facing the ocean" loading="lazy"><div class="ov"><h3>Wellness</h3><ul><li><strong>Indoor heated pool</strong><span>Infinity edge, a swim in any weather</span></li><li><strong>Outdoor pool</strong><span>Different depths, two lounger islands, a bench in the water</span></li><li><strong>Ocean-view hot tub</strong><span>Facing Lobos and Fuerteventura</span></li></ul></div></article>
+        <article class="space rv"><img src="img/shared-terrace.webp" alt="Shared outdoor dining terrace with a long table" loading="lazy"><div class="ov"><h3>Time together</h3><ul><li><strong>Shared kitchen</strong><span>Cooking classes, tastings, dinners together</span></li><li><strong>Poolside terrace</strong><span>Barbecues and long lunches in the open air</span></li><li><strong>Sea balcony and games area</strong><span>To talk, play and watch the ocean</span></li></ul></div></article>
+        <article class="space rv"><img src="img/shared-train.webp" alt="Gym with ocean views" loading="lazy"><div class="ov"><h3>Train and unwind</h3><ul><li><strong>Gym, 52&nbsp;m²</strong><span>With changing rooms, a few steps from home</span></li><li><strong>Indoor solarium</strong><span>Loungers sheltered from the wind, in full natural light</span></li></ul></div></article>
+      </div>
+      <p class="swipe" aria-hidden="true">Swipe <i class="ph-light ph-arrow-right"></i></p>
+      <p class="moments rv">Cooking classes, tastings, a barbecue by the pool, an evening arranged by the concierge or a celebration of your own: <strong>company is here whenever you want it.</strong></p>
     </div>
   </section>
 
@@ -578,13 +661,13 @@
         <p class="lead rv">One monthly rate, agreed in advance, with everything listed clearly. You arrive, unpack and start living.</p>
       </div>
       <ul>
-          <li class="rv"><i class="ph-light ph-house-line"></i><div><h3>Your private residence</h3><p>Bedroom, living room, a full kitchen with fine tableware and your own outdoor space.</p></div></li>
+          <li class="rv"><i class="ph-light ph-house-line"></i><div><h3>Your private residence</h3><p>Spaces to sleep, work, dine and relax in balance, a discreet kitchenette and, in almost every residence, outdoor space of your own.</p></div></li>
           <li class="rv"><i class="ph-light ph-sparkle"></i><div><h3>Housekeeping</h3><p>Regular cleaning throughout your stay, so your home always feels freshly prepared.</p></div></li>
           <li class="rv"><i class="ph-light ph-wifi-high"></i><div><h3>High-speed Starlink</h3><p>Fast, stable connection for work and calls.</p></div></li>
           <li class="rv"><i class="ph-light ph-thermometer-simple"></i><div><h3>Air conditioning and heating</h3><p>In every residence, for the right temperature in every season.</p></div></li>
-          <li class="rv"><i class="ph-light ph-swimming-pool"></i><div><h3>Two infinity pools and hot tubs</h3><p>Facing the Atlantic, for residents only.</p></div></li>
-          <li class="rv"><i class="ph-light ph-barbell"></i><div><h3>Gym</h3><p>Train every day without leaving the villa.</p></div></li>
-          <li class="rv"><i class="ph-light ph-headset"></i><div><h3>Support on site</h3><p>A team that answers quickly and takes care of the details.</p></div></li>
+          <li class="rv"><i class="ph-light ph-swimming-pool"></i><div><h3>Two pools and an ocean-view hot tub</h3><p>One indoor and heated, one outdoor facing the Atlantic, for residents only.</p></div></li>
+          <li class="rv"><i class="ph-light ph-barbell"></i><div><h3>A 52&nbsp;m² gym</h3><p>Train every day without leaving the villa.</p></div></li>
+          <li class="rv"><i class="ph-light ph-bell-simple"></i><div><h3>Your concierge</h3><p>Ask and it is arranged: extra cleaning, laundry, a car or bikes at the door, an evening out.</p></div></li>
           <li class="rv"><i class="ph-light ph-lock-key"></i><div><h3>Privacy and calm</h3><p>Adults only, fourteen residences, an exclusive address.</p></div></li>
       </ul>
     </div>
@@ -603,22 +686,23 @@
       <div class="profiles">
         <article class="profile rv"><div class="ph"><img src="img/who-remote-man-2.webp" alt="A man with a coffee working on his laptop in a bright living room" loading="lazy" style="object-position:40% 50%"></div><div class="tx"><span class="n">01</span><h3>Remote work in Lanzarote</h3><p><strong>Founders, consultants and remote professionals</strong> who want a productive routine by the ocean. You arrive and everything is ready: connection, space to work, home, service. The rest is your work and the island.</p></div></article>
         <article class="profile rv"><div class="ph"><img src="img/who-couple.webp" alt="A couple on a terrace looking at the sea at sunset" loading="lazy"></div><div class="tx"><span class="n">02</span><h3>Before you move, live here first</h3><p>For <strong>couples thinking about moving to Lanzarote</strong>, or a second chapter in the sun. Live it for a few months, in every light and season, with the comfort you are used to, before choosing it for good.</p></div></article>
-        <article class="profile rv"><div class="ph"><img src="img/who-production-2.webp" alt="A professional film crew around a cinema camera on set" loading="lazy"></div><div class="tx"><span class="n">03</span><h3>Companies and productions</h3><p>Long-term accommodation for <strong>professionals on assignment, film crews and project teams.</strong> One contact, flexible dates, complete discretion, and evenings by the marina after long working days.</p></div></article>
+        <article class="profile rv"><div class="ph"><img src="img/who-production-2.webp" alt="A professional film crew around a cinema camera on set" loading="lazy"></div><div class="tx"><span class="n">03</span><h3>Companies, shoots and productions</h3><p>Long-term accommodation for <strong>professionals on assignment, film crews and project teams</strong>, in a villa that is itself a set: pools, ocean and volcanic light for shoots, campaigns and meetings. One contact, flexible dates, complete discretion.</p></div></article>
+        <article class="profile rv"><div class="ph"><img src="img/who-athlete.webp" alt="A cyclist training on a mountain road in the sun" loading="lazy"></div><div class="tx"><span class="n">04</span><h3>Athletes who train all year</h3><p><strong>Cyclists, triathletes, runners and swimmers</strong> who keep training when Europe turns cold: dry roads and mild sun on the island of Ironman Lanzarote, a gym and two pools at home, recovery in the hot tub.</p></div></article>
       </div>
-      <p class="also rv">And for anyone with a project of their own: <strong>writers</strong> finishing a book, <strong>athletes</strong> training under a dry winter sun, <strong>sailors</strong> waiting at the marina for the Atlantic crossing.</p>
+      <p class="also rv">And for anyone with a project of their own: <strong>writers</strong> finishing a book, <strong>friends</strong> celebrating something together, <strong>sailors</strong> waiting at the marina for the Atlantic crossing.</p>
     </div>
   </section>
 
   <!-- ENERGIA -->
   <section class="energy" id="energy">
     <div class="wrap">
-      <span class="label rv">Energy self-sufficient</span>
-      <h2 class="rv">Its own energy. Your own silence.</h2>
-      <p class="lead rv">A home that produces its own energy: comfort that is silent and independent, and a lighter footprint on the island you have chosen to live on.</p>
+      <span class="label rv">Designed to consume less</span>
+      <h2 class="rv">Clean comfort. Your own silence.</h2>
+      <p class="lead rv">Heating and cooling come from heat recovery and geothermal energy, with no fossil fuels burned on site. A villa designed for a changing climate, pleasant through wind, heat or rain.</p>
       <ul>
-        <li class="rv"><i class="ph-light ph-solar-panel"></i><h3>Produced on site</h3><p>How the building generates its energy.</p></li>
-        <li class="rv"><i class="ph-light ph-battery-high"></i><h3>Stored for the night</h3><p>Energy available when the sun goes down.</p></li>
-        <li class="rv"><i class="ph-light ph-leaf"></i><h3>Lighter footprint</h3><p>What it means for Lanzarote.</p></li>
+        <li class="rv"><i class="ph-light ph-arrows-clockwise"></i><h3>Heat recovered</h3><p>Exchangers capture the heat that would be lost and put it back to work.</p></li>
+        <li class="rv"><i class="ph-light ph-thermometer-simple"></i><h3>Geothermal comfort</h3><p>Warm or cool air, with the help of the earth beneath the villa.</p></li>
+        <li class="rv"><i class="ph-light ph-leaf"></i><h3>No fossil fuels</h3><p>A lighter footprint on the island you have chosen to live on.</p></li>
       </ul>
     </div>
   </section>
@@ -660,10 +744,11 @@
       </div>
       <div class="list">
         <details class="rv" open><summary><h3>Can I stay for just one month?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes. Stays start at one month and can last up to twelve. Tell us the months you have in mind and we reply with availability for each residence.</p></div></details>
-        <details class="rv"><summary><h3>What is included in the monthly rate?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Your private residence, regular housekeeping, high-speed Starlink, air conditioning and heating, the two infinity pools, hot tubs, the gym and a team on site. The full list is in <a href="#included">Your stay includes</a>, and every proposal comes with clear, written terms.</p></div></details>
+        <details class="rv"><summary><h3>What is included in the monthly rate?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Your private residence, regular housekeeping, high-speed Starlink, air conditioning and heating, the indoor and outdoor pools, the ocean-view hot tub, the gym, the shared spaces and a concierge. The full list is in <a href="#included">Your stay includes</a>, and every proposal comes with clear, written terms.</p></div></details>
         <details class="rv"><summary><h3>Is the connection good enough for remote work?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Every residence has high-speed Starlink, stable enough for video calls and large files. The Canary Islands share the time zone of London and Lisbon, so your meetings keep their usual hours.</p></div></details>
         <details class="rv"><summary><h3>Is Villa Stella Maris adults only?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes. Only adults live here, across fourteen residences: the villa stays calm all day, ideal for working, resting and living at your own pace.</p></div></details>
         <details class="rv"><summary><h3>Can a company arrange a stay for a team or a film crew?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes. We work with companies and productions that need several residences for weeks or months: one contact for everything, flexible dates and complete discretion. Just tell us the number of people and the period in the request form.</p></div></details>
+        <details class="rv"><summary><h3>Can the villa be used as a location for shoots?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Yes, on request. Photo shoots, campaigns and small productions can use the pools, terraces and ocean views of the villa, with dates and terms agreed in advance with our team.</p></div></details>
         <details class="rv"><summary><h3>What is the weather like in winter?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Mild. January afternoons average around 21&nbsp;°C, and in August they stay below 30&nbsp;°C. The Atlantic is around 19&nbsp;°C in winter, so a swim is never out of season.</p></div></details>
         <details class="rv"><summary><h3>What kind of contract do you use?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>A seasonal rental contract under Spanish law (<i lang="es">contrato de temporada</i>), for stays of one to twelve months. Before signing you receive everything in writing: dates, rate and what is included.</p></div></details>
         <details class="rv"><summary><h3>How far is Puerto Calero from the airport?</h3><i class="ph-light ph-plus" aria-hidden="true"></i></summary><div class="a"><p>Lanzarote Airport is about 15&nbsp;km away, roughly 15 to 20 minutes by car. Arrecife, the island's capital, and Puerto del Carmen are also close by.</p></div></details>
@@ -699,7 +784,7 @@
   <div class="wrap">
     <div class="cols">
       <div><img src="img/logo-white-villa.png" alt="Villa Stella Maris"><p class="tagline">Long-term villa rental in Puerto Calero, Lanzarote · 1 to 12 months</p></div>
-      <div><h4>Live here</h4><ul><li><a href="#residences">Residences</a></li><li><a href="#included">What's included</a></li><li><a href="#who">Who it's for</a></li><li><a href="#day">A day here</a></li><li><a href="#energy">Energy</a></li></ul></div>
+      <div><h4>Live here</h4><ul><li><a href="#residences">Residences</a></li><li><a href="#included">What's included</a></li><li><a href="#shared">Shared spaces</a></li><li><a href="#who">Who it's for</a></li><li><a href="#day">A day here</a></li><li><a href="#energy">Energy</a></li></ul></div>
       <div><h4>Discover</h4><ul><li><a href="#lanzarote">Lanzarote</a></li><li><a href="#location">Puerto Calero</a></li><li><a href="#faq">FAQ</a></li><li><a href="#">Journal</a></li></ul></div>
       <div><h4>Contact</h4><ul><li>Puerto Calero, Lanzarote, Spain</li><li><a href="#book">Request availability</a></li></ul></div>
     </div>
